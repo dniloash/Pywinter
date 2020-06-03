@@ -16,7 +16,7 @@ Python (>= 3.6)
 
 Numpy 
 
-Pywinter tested in linux distributions.
+Pywinter has been tested in linux distributions.
 
 # User installation
 
