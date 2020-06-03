@@ -9,7 +9,9 @@ Pywinter is a Python3 library designed to create your own files in WPS intermedi
 pywinter requires:
 
 Fortran compiler (gfortran)
+
 Python (>= 3.6)
+
 Numpy 
 
 Pywinter tested in linux distributions.
