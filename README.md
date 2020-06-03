@@ -21,5 +21,7 @@ Pywinter has been tested in linux distributions.
 # User installation
 
 pip install pywinter
+
 or
+
 pip3 install pywinter
