@@ -63,7 +63,21 @@ Example
    :maxdepth: 2
    :caption: Contents:
 
+Installation
+====================================
+pip install pywinter
 
+Doc
+====================================
+pip install pywinter
+or
+pip3 install pywinter
+
+
+Docs
+====================================
+
+Documentation file :download:`pdf <https://github.com/dniloash/Pywinter/blob/master/docs/PYWINTER_documentation.pdf>`
 
 Indices and tables
 ==================
