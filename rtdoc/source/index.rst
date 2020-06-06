@@ -5,6 +5,7 @@
 
 Welcome to pywinter's documentation!
 ====================================
+Python WRF Intermediate Files
 
 Pywinter is a Python3 library designed to create your own files in WPS intermediate file format (one step back to execute metgrid.exe). Usually you dont need to create the intermediate files by your own because that is the function of ungrib.exe, but sometimes you dont have your meteorological data in GRIB1 or GRIB2 format, It is the case of NetCDF data. Winter allows to create intermediate files by a simple way, the only prerequisite is read the data with python and next you can convert it on intermediate file format with pywinter.
 
