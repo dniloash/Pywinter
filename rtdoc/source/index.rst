@@ -66,13 +66,8 @@ Example
 Installation
 ====================================
 pip install pywinter
-
-Doc
-====================================
-pip install pywinter
 or
 pip3 install pywinter
-
 
 Docs
 ====================================
