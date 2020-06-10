@@ -44,7 +44,7 @@ Example
 	winter_geo = pyw.Geo0(lat,lon)
 
 	winter_t2m = pyw.V2d('TT',tp2m)
-	winter_t = pyw.V3dp('TT',tp2m,plevs)
+	winter_t = pyw.V3dp('TT',temp,plevs)
 	winter_soilt_layer = pyw.Vsl('ST',soilt,sl_layer)
 
 	# Listing fields
