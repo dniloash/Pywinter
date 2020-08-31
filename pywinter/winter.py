@@ -500,7 +500,7 @@ class V3dp(Vuser):
         if len(self.field.shape) != 3:
             raise Error('field must a 3D array')
 
-        if len(self.plevs.shape[0]) != self.field.shape[0]:
+        if self.plevs.shape[0] != self.field.shape[0]:
             raise Error('number of pressure levels must match with 3D field')
             
 
