@@ -702,12 +702,7 @@ class Geo01(Geoinfo):
         cdx = self.geoin.dx/1000.
         cdy = self.geoin.dy/1000.
 
-        xl = self.geoin.xloc
-
         tlat1 = self.geoin.tlat1
-  
-        tlat2 = self.geoin.tlat2
-
 
         self.iproj = 0
         self.nx = cnx
@@ -725,7 +720,7 @@ class Geo01(Geoinfo):
 
 class Geo1(Geouser):
 
-    def __init__(self,lats,lons,xx,yy,tlat1):
+    def __init__(self,lats,lons,dx,dy,tlat1):
 
         self.lats = lats
         self.lons = lons
