@@ -1,11 +1,11 @@
 
 import numpy as np
 import os
-import create_inter
+import KreatE_inter_m_f
 
 
 #COMPILE
-#f2py -c create_inter.f90 -m create_inter
+#f2py -c KreatE_inter_m_f.f90 -m KreatE_inter_m_f
 
 
 class Interm:
@@ -160,9 +160,9 @@ class Interm:
         
         va = self.megamat
 
-        file1 = open('inter1','w')
-        file2 = open('inter2','w')
-        file3 = open('inter3','w')
+        file1 = open('.inTer1','w')
+        file2 = open('.inTer2','w')
+        file3 = open('.inTer3','w')
 
         for h in range(len(fnt)):
             
@@ -179,9 +179,9 @@ class Interm:
         file2.close()
         file3.close()
 
-        fnt = 'inter1'
-        fun = 'inter2'
-        fds = 'inter3'
+        fnt = '.inTer1'
+        fun = '.inTer2'
+        fds = '.inTer3'
 
         if isinstance(self.geos,Geo00):
             create_inter.crear_int0(startlat,startlon,deltalat,deltalon,fnt,fci,fun,fds,flv,ns,va)
@@ -280,7 +280,7 @@ class Var3d(Var):
         self.fnam = self.var3d.name
         self.unit = uni
         self.desc = nom
-        self.levl = levs
+        self.levl = levs[::-1]
         self.field = ffield
 
 
@@ -692,12 +692,12 @@ class Geo01(Geoinfo):
 
     def set_atr(self):
 
-        cnx = len(self.geoin.lats[0])
+        cnx = len(self.geoin.lats)
         cny = len(self.geoin.lons)
 
         
-        cstlat = self.geoin.lats[-1,0]
-        cstlon = self.geoin.lons[-1,0]
+        cstlat = self.geoin.lats[0]
+        cstlon = self.geoin.lons[0]
         
         cdx = self.geoin.dx/1000.
         cdy = self.geoin.dy/1000.
@@ -733,8 +733,8 @@ class Geo1(Geouser):
 
     def verifdim(self):
 
-        if len(self.lats.shape) != 2 and len(self.lats.shape) != 2:
-            raise Error('latitude and longitude must de 2D arrays')
+        if len(self.lats.shape) != 1 and len(self.lats.shape) != 1:
+            raise Error('latitude and longitude must be 1D arrays')
 
 
 #-----------------------------------------------------------------------------------------------
@@ -755,12 +755,12 @@ class Geo03(Geoinfo):
 
     def set_atr(self):
 
-        cnx = len(self.geoin.lats[0])
+        cnx = len(self.geoin.lats)
         cny = len(self.geoin.lons)
 
         
-        cstlat = self.geoin.lats[-1,0]
-        cstlon = self.geoin.lons[-1,0]
+        cstlat = self.geoin.lats[0]
+        cstlon = self.geoin.lons[0]
         
         cdx = self.geoin.dx/1000.
         cdy = self.geoin.dy/1000.
@@ -808,8 +808,8 @@ class Geo3(Geouser):
 
     def verifdim(self):
 
-        if len(self.lats.shape) != 2 and len(self.lats.shape) != 2:
-            raise Error('latitude and longitude must de 2D arrays')
+        if len(self.lats.shape) != 1 and len(self.lats.shape) != 1:
+            raise Error('latitude and longitude must de 1D arrays')
 #-----------------------------------------------------------------------------------------------
 
 
@@ -884,12 +884,12 @@ class Geo05(Geoinfo):
 
     def set_atr(self):
 
-        cnx = len(self.geoin.lats[0])
+        cnx = len(self.geoin.lats)
         cny = len(self.geoin.lons)
 
         
-        cstlat = self.geoin.lats[-1,0]
-        cstlon = self.geoin.lons[-1,0]
+        cstlat = self.geoin.lats[0]
+        cstlon = self.geoin.lons[0]
         
         cdx = self.geoin.dx/1000.
         cdy = self.geoin.dy/1000.
@@ -935,8 +935,8 @@ class Geo5(Geouser):
 
     def verifdim(self):
 
-        if len(self.lats.shape) != 2 and len(self.lats.shape) != 2:
-            raise Error('latitude and longitude must de 2D arrays')  
+        if len(self.lats.shape) != 1 and len(self.lats.shape) != 1:
+            raise Error('latitude and longitude must de 1D arrays')  
         
 ##########################################################
 
