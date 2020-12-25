@@ -1,7 +1,7 @@
 
 import numpy as np
 import os
-import KreatE_inter_m_f
+import KreatE_inter_m_f as creattee_inter
 
 
 #COMPILE
@@ -184,19 +184,19 @@ class Interm:
         fds = '.inTer3'
 
         if isinstance(self.geos,Geo00):
-            create_inter.crear_int0(startlat,startlon,deltalat,deltalon,fnt,fci,fun,fds,flv,ns,va)
+            creattee_inter.crear_int0(startlat,startlon,deltalat,deltalon,fnt,fci,fun,fds,flv,ns,va)
 
         elif isinstance(self.geos,Geo01):
-            create_inter.crear_int1(startlat,startlon,dx,dy,tlat1,fnt,fci,fun,fds,flv,ns,va)
+            creattee_inter.crear_int1(startlat,startlon,dx,dy,tlat1,fnt,fci,fun,fds,flv,ns,va)
 
         elif isinstance(self.geos,Geo03):
-            create_inter.crear_int3(startlat,startlon,dx,dy,xlonc,tlat1,tlat2,iswin,fnt,fci,fun,fds,flv,ns,va)
+            creattee_inter.crear_int3(startlat,startlon,dx,dy,xlonc,tlat1,tlat2,iswin,fnt,fci,fun,fds,flv,ns,va)
 
         elif isinstance(self.geos,Geo04):
-            create_inter.crear_int4(startlat,startlon,nlats,deltalon,iswin,fnt,fci,fun,fds,flv,ns,va)
+            creattee_inter.crear_int4(startlat,startlon,nlats,deltalon,iswin,fnt,fci,fun,fds,flv,ns,va)
 
         elif isinstance(self.geos,Geo05):
-            create_inter.crear_int5(startlat,startlon,dx,dy,xlonc,tlat1,iswin,fnt,fci,fun,fds,flv,ns,va)
+            creattee_inter.crear_int5(startlat,startlon,dx,dy,xlonc,tlat1,iswin,fnt,fci,fun,fds,flv,ns,va)
 
         print(fname+':'+hdate)
 
