@@ -990,7 +990,7 @@ def cinter(filen,date,geoinfo,varias,rout=''):
         geoo = Geo04(geoinfo)
 
     elif isinstance(geoinfo,Geo5):
-        geoo = Geo04(geoinfo)
+        geoo = Geo05(geoinfo)
 
     else:
         if isinstance(geoinfo,Geouser):
