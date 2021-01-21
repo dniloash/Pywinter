@@ -138,7 +138,7 @@ class Interm:
             iswin = self.geoinfo['IS_WIND_EARTH_REL']
 
 
-        elif isinstance(self.geos,Geo03):
+        elif isinstance(self.geos,Geo05):
 
             dx = self.geoinfo['DX']
             dy = self.geoinfo['DY']
