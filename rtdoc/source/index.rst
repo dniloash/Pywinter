@@ -325,7 +325,7 @@ Example
 
 Soil Field (Vsl)
 ====================================
-Vertical isobaric atmospehere variables
+Soil level variables
 
 :Vsl(name,field,levs):
 
@@ -334,7 +334,7 @@ Vertical isobaric atmospehere variables
 - levs: 1D list of string soil levels in cm
 
 
-3D isobaric avalaible name fields
+3D soil avalaible name fields
 ----------------------------------
 
 ==================   ============   =========================    ============================================
