@@ -1274,7 +1274,7 @@ def rinter(filen):
             recin = unpack('>i',intf.read(4))[0]
             record5 = unpack(str(recin)+'s', intf.read(recin))[0]
             in_slab = np.frombuffer(record5, dtype='>f')
-            in_slab = in_slab.reshape(in_nx,in_ny)
+            in_slab = in_slab.reshape(in_ny,in_nx)
             recin = unpack('>i',intf.read(4))[0]
 
             in_navarias.append(in_field.strip(' '))
@@ -1352,7 +1352,7 @@ def rinter(filen):
                     ubic = j
 
 
-            intervarf = np.zeros([len(intervar),in_nx,in_ny])*np.nan
+            intervarf = np.zeros([len(intervar),in_ny,in_nx])*np.nan
 
             for j in range(len(intervar)):
                 intervarf[j,:,:] = intervar[j]
@@ -1398,7 +1398,7 @@ def rinter(filen):
                         interlev.append(in_levs[j])
 
 
-            intervarf = np.zeros([len(intervar),in_nx,in_ny])*np.nan
+            intervarf = np.zeros([len(intervar),in_ny,in_nx])*np.nan
 
             for j in range(len(intervar)):
                 intervarf[j,:,:] = intervar[j]
