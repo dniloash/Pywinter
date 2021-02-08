@@ -5,58 +5,9 @@
 
 pywinter
 ====================================
-Python WRF Intermediate Files
+Python WRF-WPS Intermediate Files
 
-Pywinter is a Python3 library designed to create files in WPS intermediate file format (one step back to execute metgrid.exe). Usually you don't need to create the intermediate files by your own because that is the function of ungrib.exe, but sometimes you don't have the meteorological data in GRIB1 or GRIB2 format, this is the case of NetCDF data. Pywinter allows to create intermediate files by a simple way, the only prerequisite is to read the data with python and next you can convert it on intermediate file format with pywinter.
-
-
-Example
-====================================
-
-.. code-block:: python
-
-	import numpy as np
-	import pywinter.winter as pyw
-	import data_example as data
-
-
-	## Read data
-	############################################################
-
-	# Read Geo-data
-	lat = data.variables['Latitude'][:]
-	lon = data.variables['Longitude'][:]
-	# Read 2D data 
-	tp2m = data.variables['T2'][:,:]
-	# Read 3D data 
-	temp = data.variables['T'][:,:,:]
-	plevs = data.variables['PLEV'][:]
-	# Read 3D soil data 
-	soilt = data.variables['SLTY'][:,:,:]
-	sl_layer = ['000010','010040','040100','100200']
-
-
-	## Pywinter
-	############################################################
-
-
-	# Create winter fields
-	winter_geo = pyw.Geo0(lat,lon)
-
-	winter_t2m = pyw.V2d('TT',tp2m)
-	winter_t = pyw.V3dp('TT',temp,plevs)
-	winter_soilt_layer = pyw.Vsl('ST',soilt,sl_layer)
-
-	# Listing fields
-	total_fields = [winter_t2m,
-	                winter_t,
-	                winter_soilt_layer]
-
-	# Out path
-	path_out = '/home/Documents/intermediate_files/'
-
-	# Write intermediate file
-	pyw.cinter('FILE','1994-05-18_06',winter_geo,total_fields,path_out)
+Pywinter is a Python3 library designed for handling files in WRF-WPS intermediate file format. Usually you don't need to deal with the intermediate files by your own because that is the function of ungrib.exe, but sometimes you don't have your meteorological data in GRIB format. Pywinter allows to read and create intermediate files by a simple way.
 
 
 
@@ -86,6 +37,57 @@ or
 pip3 install pywinter
 
 
+Read intermediate files (rinder)
+====================================
+For reading the intermediate files information you must utilize the function \textbf{rinder}. Once you have read the information you can manipulate the data easily. The results will be a dictionary that contains the variables in the intermediate file, also every key includes general information, geo information, levels, and the data array.
+
+Example
+-------------
+.. code-block:: python
+	import numpy as np
+	import pywinter.winter as pyw
+	import data_example as data
+
+	infile = '/home/allyson/Documents/files/FILE:1994-05-18_06'
+
+	interfile = pyw.rinder(infile)
+
+	print(interfile.keys())
+	>> dict_keys(['LANDSEA', 'ST', 'SST', 'SOILHGT', 'PSFC', 'HGT', 'SKINTEMP', 'TT',
+	'PMSL', 'VV', 'SM', 'UU', 'RH', 'TT2M', 'RH2M', 'UU10M', 'VV10M'])
+
+	print(interfile['TT'].general)
+	>> {'VERSION': 5, 'HDATE': '2015-07-27_12:00:00', 'XFCST': 0.0, 'MAP_SOURCE': 'ECMWF',
+	'FIELD': 'TT', 'UNITS': 'K', 'DESC': 'Temperature', 'XLVL': '1000', 'NX': 441, 'NY': 329,
+	'EARTH_RADIUS': 6367.47021484375, 'IS_WIND_EARTH_REL': False}
+
+	print(interfile['TT'].geoinfo)
+	>> {'IPROJ': 0, 'PROJ': 'Cylindrical Equidistant (0)', 'STARTLOC': 'SWCORNER',
+	'STARTLAT': 38.0, 'STARTLON': -130.0, 'DELTALAT': -0.25, 'DELTALON': 0.25}
+
+	print(interfile['TT'].level)
+	>> [100000.  97500.  95000.  92500.  90000.  87500.  85000.  82500.  80000.
+	  77500.  75000.  70000.  65000.  60000.  55000.  50000.  45000.  40000.
+	  35000.  30000.  25000.  20000.  17500.  15000.  12500.  10000.   7000.
+	   5000.   3000.   2000.   1000.]
+	   
+	print(interfile['TT'].val)
+	>> [[[289.86547852 289.89868164 289.85571289 ... 294.19750977 294.20141602
+	   294.19360352]
+	  ...
+	  [278.23071289 277.93383789 277.69360352 ... 280.58032227 280.63500977
+	   280.70727539]]
+	   ...
+	 [[234.77418518 234.80836487 234.85231018 ... 232.22828674 232.20973206
+	   232.20582581]
+	   ...
+	  [213.70191956 213.95289612 214.19410706 ... 211.46461487 211.38844299
+	   211.31422424]]]
+	   
+	print(interfile['TT'].val.shape)
+	>> (31, 441, 329)
+
+
 Geo-Information (Geo)
 ====================================
 This funtions ares utilized to locate the information in the space. There are several kind of geo-info, it depends on projection of the original data:
@@ -100,34 +102,36 @@ Geo0
 -------------
 **Cylindrical Equidistant (Lat/lon)**
 
-:Geo0(lats,lons):
+:Geo0(stlat,stlon,dlat,dlon):
 
-- lats: 1D array of latitudes (degrees north)
-- lons: 1D array of latitudes (degrees east)
+- stlat: SOUTH-WEST corner latitude of data (degrees north)
+- stlon: SOUTH-WEST corner longitude of data (degrees north)
+- dlat: latitude increment (degrees)
+- dlon: longitude increment (degrees)
 
 
 Geo1
 -------------
 **Mercator**
 
-:Geo1(lats,lons,dx,dy,tlat1):
+:Geo1(stlat,stlon,dx,dy,tlat1):
 
-- lats: 1D vector of latitudes (degrees north)
-- lons: 1D vector of latitudes (degrees east)
-- dx: Grid spacing in x (m)
-- dy: Grid spacing in y (m)
+- stlat: SOUTH-WEST corner latitude of data (degrees north)
+- stlon: SOUTH-WEST corner longitude of data (degrees north)
+- dx: Grid spacing in x (Km)
+- dy: Grid spacing in y (Km)
 - tlat1: True latitude 1 of projection (degrees north)
 
 Geo3
 -------------
 **Lambert conformal conic**
 
-:Geo3(lats,lons,dx,dy,xloc,tlat1,tlat2,iswin):
+:Geo3(stlat,stlon,dx,dy,xloc,tlat1,tlat2,iswin):
 
-- lats: 1D vector of latitudes (degrees north)
-- lons: 1D vector of latitudes (degrees east)
-- dx: Grid spacing in x (m)
-- dy: Grid spacing in y (m)
+- stlat: SOUTH-WEST corner latitude of data (degrees north)
+- stlon: SOUTH-WEST corner longitude of data (degrees north)
+- dx: Grid spacing in x (Km)
+- dy: Grid spacing in y (Km)
 - xloc: Center longitude of projection
 - tlat1: True latitude 1 of projection (degrees north)
 - tlat2: True latitude 2 of projection (degrees north)
@@ -138,11 +142,12 @@ Geo4
 **Gaussian [global only] (Transverse mercator)**
 
 
-:Geo4(lats,lons,nlats,iswin):
+:Geo4(stlat,stlon,nlats,dlon,iswin):
 
-- lats: 1D vector of latitudes (degrees north)
-- lons: 1D vector of latitudes (degrees east)
+- stlat: SOUTH-WEST corner latitude of data (degrees north)
+- stlon: SOUTH-WEST corner longitude of data (degrees north)
 - nlats: Number of latitudes north of equator
+- dlon: longitude increment (degrees)
 - iswin: Earth[False] or source grid[True] rotated winds
 
 
@@ -150,12 +155,12 @@ Geo5
 -------------
 **Polar-stereographic**
 
-:Geo5(lats,lons,dx,dy,xloc,tlat1,iswin):
+:Geo5(stlat,stlon,dx,dy,xloc,tlat1,iswin):
 
-- lats: 1D vector of latitudes (degrees north)
-- lons: 1D vector of latitudes (degrees east)
-- dx: Grid spacing in x (m)
-- dy: Grid spacing in y (m)
+- stlat: SOUTH-WEST corner latitude of data (degrees north)
+- stlon: SOUTH-WEST corner longitude of data (degrees north)
+- dx: Grid spacing in x (Km)
+- dy: Grid spacing in y (Km)
 - xloc: Center longitude of projection
 - tlat1: True latitude 1 of projection (degrees north)
 - iswin: Earth[False] or source grid[True] rotated winds
@@ -283,7 +288,7 @@ Vertical isobaric atmospehere variables
 
 - name: WPS field name (see table)
 - field: 3D array [plev,lat,lon]
-- plevs: 1D arra of pressure levels (hPa)
+- plevs: 1D arra of pressure levels (Pa)
 
 
 3D isobaric avalaible name fields
@@ -398,9 +403,15 @@ Example
 	import pywinter.winter as pyw
 	import data_example as data
 
+
+	## Read data
+	############################################################
+
 	# Read Geo-data
 	lat = data.variables['Latitude'][:]
 	lon = data.variables['Longitude'][:]
+	dlat = np.abs(lat[1]-lat[0])
+	dlon = np.abs(lon[1]-lon[0])
 	# Read 2D data 
 	tp2m = data.variables['T2'][:,:]
 	# Read 3D data 
@@ -410,11 +421,16 @@ Example
 	soilt = data.variables['SLTY'][:,:,:]
 	sl_layer = ['000010','010040','040100','100200']
 
+
+	## Pywinter
+	############################################################
+
+
 	# Create winter fields
-	winter_geo = pyw.Geo0(lat,lon)
+	winter_geo = pyw.Geo0(lat[0],lon[0],dlat,dlon)
 
 	winter_t2m = pyw.V2d('TT',tp2m)
-	winter_t = pyw.V3dp('TT',tp2m,plevs)
+	winter_t = pyw.V3dp('TT',temp,plevs)
 	winter_soilt_layer = pyw.Vsl('ST',soilt,sl_layer)
 
 	# Listing fields
@@ -426,7 +442,8 @@ Example
 	path_out = '/home/Documents/intermediate_files/'
 
 	# Write intermediate file
-	pwy.cinter('FILE','1994-05-18_06',winter_geo,total_fields,path_out)
+	pyw.cinter('FILE','1994-05-18_06',winter_geo,total_fields,path_out)
+
 
 
 
@@ -446,6 +463,14 @@ IMPORTANT WARNING
 	- If your original data has a not-exact hourly time resolution, for example: [ **05:30:00, 06:30:00, 07:30:00** ], metgrid.exe won't find the intermediate files. You can trick the program if you set the **interval\_seconds** namelist parameter as **3601** and your intermediate files in this case will be [ **FILE:YYYY-MM-DD_05:30:00 , FILE:YYYY-MM-DD_06:30:01, FILE:YYYY-MM-DD_07:30:02** ]. This just works for short runs, because you must remember that in 60 hours the delay will be 1 minute with respect to your original data. This could be a bug or a simple restriction from metgrid.exe.
 
 
+Final notes
+====================================
+
+Actually pywinter can't check if you write the file with all the necessary fields to run WRF, neither cannot check if your information is consistent, therefore is important you make sure the data is well before you create the files, you can get more information of how to create good files in the WRF User guide and WRF web tutorial, also you can check the intermediate files with WPS util programs:
+
+- .../WRF/WPS/util/rd\_intermediate.exe: It reads fields into intermediate files and show them
+- .../WRF/WPS/util/int2nc.exe: it converts intermediate files to netCDF format.
+
 
 Documentation file
 ====================================
@@ -457,6 +482,12 @@ More examples
 ====================================
 
 More examples here :download:`link <https://github.com/dniloash/Pywinter/tree/master/examples>`
+
+
+Contact
+====================================
+
+Pywinter have been tested with success for many cases but its yet an early version and it can be improved. if you have any problem our suggestion please contact to dniloash@gmail.com
 
 Indices and tables
 ==================
