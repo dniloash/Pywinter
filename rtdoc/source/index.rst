@@ -49,13 +49,9 @@ Example
 	import pywinter.winter as pyw
 	import data_example as data
 
-	# For Cylindrical equidistant
-	# Read Geo-data (Latitudes and longitudes)
-	lat = data.variables['Latitude'][:] # degrees north
-	lon = data.variables['Longitude'][:] # degrees east
+	infile = '/home/allyson/Documents/files/FILE:1994-05-18_06'
 
-	# create winter Geo-information
-	winter_geo = pwy.Geo0(lat,lon)
+	interfile = pyw.rinder(infile)
 
 
 Geo-Information (Geo)
