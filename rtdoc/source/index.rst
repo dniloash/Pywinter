@@ -87,6 +87,10 @@ Example
 	print(interfile['TT'].val.shape)
 	>> (31, 441, 329)
 
+Creating Intermediate files
+====================================
+Before create intermediate files (cinter function), you must use the Geo-information(Geo0,Geo1,Geo3,Geo4,Geo5) and the type of variable you are using (V2d,V3d,V3dp,Vsl)
+
 Geo-Information (Geo)
 ====================================
 This funtions ares utilized to locate the information in the space. There are several kind of geo-info, it depends on projection of the original data:
