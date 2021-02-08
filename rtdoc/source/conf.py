@@ -19,11 +19,11 @@ sys.path.insert(0, os.path.abspath('.'))
 # -- Project information -----------------------------------------------------
 
 project = 'pywinter'
-copyright = '2020, dniloash'
+copyright = '2021, dniloash'
 author = 'dniloash'
 
 # The full version, including alpha/beta/rc tags
-release = '1.2.4'
+release = '2.0.0'
 
 
 # -- General configuration ---------------------------------------------------
