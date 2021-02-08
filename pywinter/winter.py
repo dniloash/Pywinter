@@ -1,6 +1,7 @@
 
 import numpy as np
 import os
+from struct import unpack
 import KreatE_inter_m_f as creattee_inter
 
 
@@ -37,8 +38,8 @@ class Interm:
     def set_geoatr(self):
 
         self.geoinfo['IPROJ'] = self.geos.iproj
-        self.geoinfo['NX'] = self.geos.nx
-        self.geoinfo['NY'] = self.geos.ny
+        self.geoinfo['NX'] = len(self.varto[0].field[0])
+        self.geoinfo['NY'] = len(self.varto[0].field)
         self.geoinfo['STARTLOC'] = self.geos.stloc
         self.geoinfo['STARTLAT'] = self.geos.stlat
         self.geoinfo['STARTLON'] = self.geos.stlon
@@ -635,20 +636,20 @@ class Geo00(Geoinfo):
 
     def set_atr(self):
 
-        cnx = len(self.geoin.lons)
-        cny = len(self.geoin.lats)
+        #cnx = len(self.geoin.lons)
+        #cny = len(self.geoin.lats)
 
-        mid1 = int(len(self.geoin.lats)/2)
-        mid2 = int(len(self.geoin.lons)/2)
+        #mid1 = int(len(self.geoin.lats)/2)
+        #mid2 = int(len(self.geoin.lons)/2)
         
-        cstlat = self.geoin.lats[0]
-        cstlon = self.geoin.lons[0]
-        cdlat = np.abs(self.geoin.lats[mid1+1] - self.geoin.lats[mid1])
-        cdlon = np.abs(self.geoin.lons[mid2+1] - self.geoin.lons[mid2])
+        cstlat = self.geoin.stlat
+        cstlon = self.geoin.stlon
+        cdlat = self.geoin.dlat
+        cdlon = self.geoin.dlon
 
         self.iproj = 0
-        self.nx = cnx
-        self.ny = cny
+        #self.nx = cnx
+        #self.ny = cny
         self.stloc = 'SWCORNER'
         self.stlat = cstlat
         self.stlon = cstlon
@@ -660,18 +661,20 @@ class Geo00(Geoinfo):
 
 class Geo0(Geouser):
 
-    def __init__(self,lats,lons):
+    def __init__(self,stlat,stlon,dlat,dlon):
         
-        self.lats = lats
-        self.lons = lons
+        self.stlat = stlat
+        self.stlon = stlon
+        self.dlat = dlat
+        self.dlon = dlon        
 
-        self.verifdim()
+        #self.verifdim()
 
 
-    def verifdim(self):
+#    def verifdim(self):
 
-        if len(self.lats.shape) != 1 and len(self.lats.shape) != 1:
-            raise Error('latitude and longitude must de 1D arrays')
+#        if len(self.lats.shape) != 1 and len(self.lats.shape) != 1:
+#            raise Error('latitude and longitude must de 1D arrays')
 
 
 #-----------------------------------------------------------------------------------------------
@@ -692,21 +695,21 @@ class Geo01(Geoinfo):
 
     def set_atr(self):
 
-        cnx = len(self.geoin.lats)
-        cny = len(self.geoin.lons)
+        #cnx = len(self.geoin.lons)
+        #cny = len(self.geoin.lats)
 
         
-        cstlat = self.geoin.lats[0]
-        cstlon = self.geoin.lons[0]
+        cstlat = self.geoin.stlat
+        cstlon = self.geoin.stlon
         
-        cdx = self.geoin.dx/1000.
-        cdy = self.geoin.dy/1000.
+        cdx = self.geoin.dx
+        cdy = self.geoin.dy
 
         tlat1 = self.geoin.tlat1
 
-        self.iproj = 0
-        self.nx = cnx
-        self.ny = cny
+        self.iproj = 1
+        #self.nx = cnx
+        #self.ny = cny
         self.stloc = 'SWCORNER'
         self.stlat = cstlat
         self.stlon = cstlon
@@ -720,21 +723,21 @@ class Geo01(Geoinfo):
 
 class Geo1(Geouser):
 
-    def __init__(self,lats,lons,dx,dy,tlat1):
+    def __init__(self,stlat,stlon,dx,dy,tlat1):
 
-        self.lats = lats
-        self.lons = lons
+        self.stlat = stlat
+        self.stlon = stlon
         self.dx = dx
         self.dy = dy
         self.tlat1 = tlat1
         
-        self.verifdim()
+        #self.verifdim()
 
 
-    def verifdim(self):
+#    def verifdim(self):
 
-        if len(self.lats.shape) != 1 and len(self.lats.shape) != 1:
-            raise Error('latitude and longitude must be 1D arrays')
+#        if len(self.lats.shape) != 1 and len(self.lats.shape) != 1:
+#            raise Error('latitude and longitude must be 1D arrays')
 
 
 #-----------------------------------------------------------------------------------------------
@@ -755,15 +758,15 @@ class Geo03(Geoinfo):
 
     def set_atr(self):
 
-        cnx = len(self.geoin.lats)
-        cny = len(self.geoin.lons)
+        #cnx = len(self.geoin.lons)
+        #cny = len(self.geoin.lats)
 
         
-        cstlat = self.geoin.lats[0]
-        cstlon = self.geoin.lons[0]
+        cstlat = self.geoin.stlat
+        cstlon = self.geoin.stlon
         
-        cdx = self.geoin.dx/1000.
-        cdy = self.geoin.dy/1000.
+        cdx = self.geoin.dx
+        cdy = self.geoin.dy
 
         xl = self.geoin.xloc
 
@@ -773,9 +776,9 @@ class Geo03(Geoinfo):
 
         iswin = self.geoin.iswin
 
-        self.iproj = 0
-        self.nx = cnx
-        self.ny = cny
+        self.iproj = 3
+        #self.nx = cnx
+        #self.ny = cny
         self.stloc = 'SWCORNER'
         self.stlat = cstlat
         self.stlon = cstlon
@@ -792,10 +795,10 @@ class Geo03(Geoinfo):
 
 class Geo3(Geouser):
 
-    def __init__(self,lats,lons,dx,dy,xloc,tlat1,tlat2,iswin):
+    def __init__(self,stlat,stlon,dx,dy,xloc,tlat1,tlat2,iswin):
 
-        self.lats = lats
-        self.lons = lons
+        self.stlat = stlat
+        self.stlon = stlon
         self.dx = dx
         self.dy = dy
         self.xloc = xloc
@@ -803,13 +806,13 @@ class Geo3(Geouser):
         self.tlat2 = tlat2
         self.iswin = iswin
 
-        self.verifdim()
+        #self.verifdim()
 
 
-    def verifdim(self):
+#    def verifdim(self):
 
-        if len(self.lats.shape) != 1 and len(self.lats.shape) != 1:
-            raise Error('latitude and longitude must de 1D arrays')
+#        if len(self.lats.shape) != 1 and len(self.lats.shape) != 1:
+#            raise Error('latitude and longitude must de 1D arrays')
 #-----------------------------------------------------------------------------------------------
 
 
@@ -826,22 +829,22 @@ class Geo04(Geoinfo):
 
     def set_atr(self):
 
-        cnx = len(self.geoin.lons)
-        cny = len(self.geoin.lats)
+        #cnx = len(self.geoin.lons)
+        #cny = len(self.geoin.lats)
 
-        mid1 = int(len(self.geoin.lats)/2)
-        mid2 = int(len(self.geoin.lons)/2)
+        #mid1 = int(len(self.geoin.lats)/2)
+        #mid2 = int(len(self.geoin.lons)/2)
         
-        cstlat = self.geoin.lats[0]
-        cstlon = self.geoin.lons[0]
+        cstlat = self.geoin.stlat
+        cstlon = self.geoin.stlon
         nlats = self.geoin.nlats
-        cdlon = np.abs(self.geoin.lons[mid2+1] - self.geoin.lons[mid2])
+        cdlon = self.geoin.dlon
 
         iswin = self.geoin.iswin
 
-        self.iproj = 0
-        self.nx = cnx
-        self.ny = cny
+        self.iproj = 4
+        #self.nx = cnx
+        #self.ny = cny
         self.stloc = 'SWCORNER'
         self.stlat = cstlat
         self.stlon = cstlon
@@ -853,20 +856,21 @@ class Geo04(Geoinfo):
 
 class Geo4(Geouser):
 
-    def __init__(self,lats,lons,nlats,iswin):
+    def __init__(self,stlat,stlon,nlats,dlon,iswin):
         
-        self.lats = lats
-        self.lons = lons
+        self.stlat = stlat
+        self.stlon = stlon
         self.nlats = nlats
+        self.dlon = dlon
         self.iswin = iswin
 
-        self.verifdim()
+        #self.verifdim()
 
 
-    def verifdim(self):
+#    def verifdim(self):
 
-        if len(self.lats.shape) != 1 and len(self.lats.shape) != 1:
-            raise Error('latitude and longitude must de 1D arrays')  
+#        if len(self.lats.shape) != 1 and len(self.lats.shape) != 1:
+#            raise Error('latitude and longitude must de 1D arrays')  
 #-----------------------------------------------------------------------------------------------
 
 class Geo05(Geoinfo):
@@ -884,15 +888,15 @@ class Geo05(Geoinfo):
 
     def set_atr(self):
 
-        cnx = len(self.geoin.lats)
-        cny = len(self.geoin.lons)
+        #cnx = len(self.geoin.lons)
+        #cny = len(self.geoin.lats)
 
         
-        cstlat = self.geoin.lats[0]
-        cstlon = self.geoin.lons[0]
+        cstlat = self.geoin.stlat
+        cstlon = self.geoin.stlon
         
-        cdx = self.geoin.dx/1000.
-        cdy = self.geoin.dy/1000.
+        cdx = self.geoin.dx
+        cdy = self.geoin.dy
 
         xl = self.geoin.xloc
 
@@ -902,9 +906,9 @@ class Geo05(Geoinfo):
 
         iswin = self.geoin.iswin
 
-        self.iproj = 0
-        self.nx = cnx
-        self.ny = cny
+        self.iproj = 5
+        #self.nx = cnx
+        #self.ny = cny
         self.stloc = 'SWCORNER'
         self.stlat = cstlat
         self.stlon = cstlon
@@ -920,23 +924,23 @@ class Geo05(Geoinfo):
 
 class Geo5(Geouser):
 
-    def __init__(self,lats,lons,dx,dy,xloc,tlat1,iswin):
+    def __init__(self,stlat,stlon,dx,dy,xloc,tlat1,iswin):
 
-        self.lats = lats
-        self.lons = lons
+        self.stlat = stlat
+        self.stlon = stlon
         self.dx = dx
         self.dy = dy
         self.xloc = xloc
         self.tlat1 = tlat1
         self.iswin = iswin
 
-        self.verifdim()
+        #self.verifdim()
 
 
-    def verifdim(self):
+#    def verifdim(self):
 
-        if len(self.lats.shape) != 1 and len(self.lats.shape) != 1:
-            raise Error('latitude and longitude must de 1D arrays')  
+#        if len(self.lats.shape) != 1 and len(self.lats.shape) != 1:
+#            raise Error('latitude and longitude must de 1D arrays')  
         
 ##########################################################
 
@@ -974,7 +978,7 @@ def cinter(filen,date,geoinfo,varias,rout=''):
     for i in varias:
         if isinstance(i,Vuser):
             pass
-        else: ('Variable elements must be winter.V type')
+        else: ('Variable elements must be winter.Var type')
             
 
     if isinstance(geoinfo,Geo0):
@@ -1048,7 +1052,7 @@ def cinter(filen,date,geoinfo,varias,rout=''):
             for j in range(nlevs):
 
                 lev = varia3dp.levl[j]
-                levi = str(int(lev*100))
+                levi = str(int(lev))
                 field2 = varia3dp.field[j,:,:]
 
                 
@@ -1092,3 +1096,421 @@ def cinter(filen,date,geoinfo,varias,rout=''):
     interfile.set_geoatr()
     interfile.set_varatr()
     interfile.create_intermf()
+
+
+
+
+class Rinterm:
+
+    def __init__(self,general={},geoinfo={},level=None,val=None):
+        
+        self.general = general
+        self.geoinfo = geoinfo
+        self.level = level
+        self.val = val
+
+
+def rinter(filen):
+
+    intf = open(filen,'rb')
+    #a = np.fromfile(f,dtype='float32')
+
+
+    in_navarias = []
+    in_levs = []
+    in_campomat = []
+
+
+    lfin_version = []
+
+    lfin_hdate = []
+    lfin_xfcst = []
+    lfin_map_source = [] 
+    lfin_units = []
+    lfin_desc = []
+    lfin_nx = []
+    lfin_ny = []
+    lfin_iproj = []
+
+    lfin_startloc = []
+    lfin_startlat = []
+    lfin_startlon = []
+    lfin_deltalat = []
+    lfin_deltalon = []
+    lfin_earth_radius = [] 
+    lfin_dx = []
+    lfin_dy = []
+    lfin_truelat1 = [] 
+    lfin_xlonc = []
+    lfin_truelat2 = [] 
+    lfin_nlats = []
+    lfin_is_wind = []
+
+
+
+    inwcond = 0
+    innumvar = 0
+
+    while inwcond == 0:
+
+        try:
+            
+            recin = unpack('>i',intf.read(4))[0]
+            in_version = unpack('>i',intf.read(recin))[0]
+            recin_close = unpack('>i',intf.read(4))[0]
+            
+            recin = unpack('>i',intf.read(4))[0]
+            record2 = unpack(str(recin)+'s',intf.read(recin))[0]
+            in_hdate = record2[0:24].decode('UTF8')
+            in_xfcst = unpack('>f', record2[24:28])[0]
+            in_map_source = record2[28:60].decode('UTF8')
+            in_field = record2[60:69].decode('UTF8')
+            in_units = record2[69:94].decode('UTF8')
+            in_desc = record2[94:140].decode('UTF8')
+            in_xlvl = unpack('>f', record2[140:144])[0]
+            in_nx = unpack('>i', record2[144:148])[0]
+            in_ny = unpack('>i', record2[148:152])[0]
+            in_iproj = unpack('>i', record2[152:156])[0]
+            recin_close = unpack('>i',intf.read(4))[0]
+            
+            recin= unpack('>i',intf.read(4))[0]
+            record3= unpack(str(recin)+'s',intf.read(recin))[0]
+            in_startloc = record3[0:8].decode('UTF8')
+
+            lfin_startloc.append(in_startloc)
+
+            if(in_iproj == 0): 
+                in_startlat = unpack('>f', record3[8:12])[0]
+                in_startlon = unpack('>f', record3[12:16])[0]
+                in_deltalat = unpack('>f', record3[16:20])[0]
+                in_deltalon = unpack('>f', record3[20:24])[0]
+                in_earth_radius = unpack('>f', record3[24:28])[0]
+
+                lfin_startlat.append(in_startlat)
+                lfin_startlon.append(in_startlon)
+                lfin_deltalat.append(in_deltalat)
+                lfin_deltalon.append(in_deltalon)
+                lfin_earth_radius.append(in_earth_radius)
+
+            elif(in_iproj == 1): 
+
+                in_startlat = unpack('>f', record3[8:12])[0]
+                in_startlon = unpack('>f', record3[12:16])[0]
+                in_dx = unpack('>f', record3[16:20])[0]
+                in_dy = unpack('>f', record3[20:24])[0]
+                in_truelat1 = unpack('>f', record3[24:28])[0]
+                in_earth_radius = unpack('>f', record3[28:32])[0]
+
+
+                lfin_startlat.append(in_startlat)
+                lfin_startlon.append(in_startlon)
+                lfin_earth_radius.append(in_earth_radius)
+                lfin_dx.append(in_dx)
+                lfin_dy.append(in_dy)
+                lfin_truelat1.append(in_truelat1)
+
+                
+            elif(in_iproj == 3):
+                in_startlat = unpack('>f', record3[8:12])[0]
+                in_startlon = unpack('>f', record3[12:16])[0]
+                in_dx = unpack('>f', record3[16:20])[0]
+                in_dy = unpack('>f', record3[20:24])[0]
+                in_xlonc = unpack('>f', record3[24:28])[0]
+                in_truelat1 = unpack('>f', record3[28:32])[0]
+                in_truelat2 = unpack('>f', record3[32:36])[0]
+                in_earth_radius = unpack('>f', record3[36:40])[0]
+
+
+                lfin_startlat.append(in_startlat)
+                lfin_startlon.append(in_startlon)
+                lfin_earth_radius.append(in_earth_radius)
+                lfin_dx.append(in_dx)
+                lfin_dy.append(in_dy)
+                lfin_truelat1.append(in_truelat1)
+                lfin_xlonc.append(in_xlonc)
+                lfin_truelat2.append(in_truelat2)
+
+                
+            elif(in_iproj == 4):
+                in_startlat = struct.unpack('>f', record3[8:12])[0]
+                in_startlon = struct.unpack('>f', record3[12:16])[0]
+                in_nlats = struct.unpack('>f', record3[16:20])[0]
+                in_deltalon = struct.unpack('>f', record3[20:24])[0]
+                in_earth_radius = struct.unpack('>f', record3[24:28])[0]
+
+                lfin_startlat.append(in_startlat)
+                lfin_startlon.append(in_startlon)
+                lfin_deltalon.append(in_deltalon)
+                lfin_earth_radius.append(in_earth_radius)
+                lfin_nlats.append(in_nlats)
+                
+            elif(in_iproj == 5):
+                in_startlat = unpack('>f', record3[8:12])[0]
+                in_startlon = unpack('>f', record3[12:16])[0]
+                in_dx = unpack('>f', record3[16:20])[0]
+                in_dy = unpack('>f', record3[20:24])[0]
+                in_xlonc = unpack('>f', record3[24:28])[0]
+                in_truelat1 = unpack('>f', record3[28:32])[0]
+                in_earth_radius = unpack('>f', record3[32:36])[0]
+
+                lfin_startlat.append(in_startlat)
+                lfin_startlon.append(in_startlon)
+                lfin_earth_radius.append(in_earth_radius)
+                lfin_dx.append(in_dx)
+                lfin_dy.append(in_dy)
+                lfin_truelat1.append(in_truelat1)
+                lfin_xlonc.append(in_xlonc)
+
+
+            recin_close = unpack('>i',intf.read(4))[0]
+
+            
+            recin= unpack('>i',intf.read(4))[0]
+            record4 = unpack(str(recin)+'s',intf.read(recin))[0]
+            in_is_wind = unpack('>i', record4[0:4])[0]
+            recin_close = unpack('>l',intf.read(4))[0]
+
+
+            recin = unpack('>i',intf.read(4))[0]
+            record5 = unpack(str(recin)+'s', intf.read(recin))[0]
+            in_slab = np.frombuffer(record5, dtype='>f')
+            in_slab = in_slab.reshape(in_nx,in_ny)
+            recin = unpack('>i',intf.read(4))[0]
+
+            in_navarias.append(in_field.strip(' '))
+            in_levs.append(str(in_xlvl)[:-2])
+            in_campomat.append(in_slab)  
+
+
+            lfin_is_wind.append(in_is_wind)
+
+            lfin_version.append(in_version)
+
+            lfin_hdate.append(in_hdate.strip(' '))
+            lfin_xfcst.append(in_xfcst)
+            lfin_map_source.append(in_map_source.strip(' '))
+            lfin_units.append(in_units.strip(' '))
+            lfin_desc.append(in_desc.strip(' '))
+            lfin_nx.append(in_nx)
+            lfin_ny.append(in_ny)
+            lfin_iproj.append(in_iproj)
+
+
+
+            innumvar += 1
+
+        except:
+            inwcond += 1
+
+
+    intf.close()
+
+
+    lfin_is_wind = [bool(i) for i in lfin_is_wind ]
+
+    onesvarno = list(set(in_navarias))
+
+    onesvar = []
+    
+    for k in range(len(onesvarno)):
+        if onesvarno[k][0:2]== 'ST' or onesvarno[k][0:2] == 'SM':
+            onesvar.append(onesvarno[k][0:2])
+
+        elif onesvarno[k][0:5]== 'SOILT' or onesvarno[k][0:5] == 'SOILM':
+            onesvar.append(onesvarno[k][0:5])
+        else:
+            onesvar.append(onesvarno[k])
+
+
+
+    onesvar = list(set(onesvar))+['TT_S','RH_S','SPECHUMD_S','UU_S','VV_S']
+
+
+    totalvarias = {}
+
+
+    for i in range(len(onesvar)):
+
+        onevar =  onesvar[i]
+
+        intervarf = None
+        interlevf = None
+        ubic = None
+
+
+        if onevar == 'ST' or onevar == 'SM' :
+
+            intervar = []
+            interlev = []
+
+            for j in range(len(in_navarias)):
+
+                if in_navarias[j][0:2] == onevar:
+
+                    intervar.append(in_campomat[j])
+                    interlev.append(in_navarias[j]) 
+                    ubic = j
+
+
+            intervarf = np.zeros([len(intervar),in_nx,in_ny])*np.nan
+
+            for j in range(len(intervar)):
+                intervarf[j,:,:] = intervar[j]
+
+            interlevf = [j[0:] for j in interlev]
+
+
+        elif onevar[0:5] == 'SOILT' or onevar[0:5] == 'SOILM':
+
+            intervar = []
+            interlev = []
+
+            for j in range(len(in_navarias)):
+
+                if in_navarias[j][0:5] == onevar:
+                    print(in_navarias[j])
+
+                    intervar.append(in_campomat[j])
+                    interlev.append(in_navarias[j]) 
+
+
+            for j in range(len(intervar)):
+                intervarf[j,:,:] = intervar[j]
+
+            interlevf = [j[0:] for j in interlev]
+
+
+        elif onevar == 'TT' or onevar == 'RH' or onevar == 'SPECHUMD' or onevar == 'UU' or onevar == 'VV' or onevar == 'GHT'  or onevar == 'PRESSURE':
+
+            intervar = []
+            interlev = []
+
+            for j in range(len(in_navarias)):
+
+                if in_navarias[j] == onevar:
+
+                    if in_levs[j] == '200100':
+                        pass
+
+                    else:
+                        ubic = j
+                        intervar.append(in_campomat[j])
+                        interlev.append(in_levs[j])
+
+
+            intervarf = np.zeros([len(intervar),in_nx,in_ny])*np.nan
+
+            for j in range(len(intervar)):
+                intervarf[j,:,:] = intervar[j]
+
+            interlevf = np.array(interlev).astype('float')
+
+
+        elif onevar == 'TT_S' or onevar == 'RH_S' or onevar == 'SPECHUMD_S' or onevar == 'UU_S' or onevar == 'VV_S':
+
+            for j in range(len(in_navarias)):
+
+                if in_navarias[j] == onevar[:-2]:
+
+                    if in_levs[j] == '200100':
+
+                        intervarf = in_campomat[j]
+                        interlevf = in_levs[j]
+                        ubic = j
+
+                        if onevar == 'TT_S' or onevar == 'RH_S' or onevar == 'SPECHUMD_S':
+                            onevar = onevar[:-2]+'2M'
+                        elif onevar == 'UU_S' or onevar == 'VV_S':
+                            onevar = onevar[:-2]+'10M'
+
+        else:
+
+            for j in range(len(in_navarias)):
+
+                if in_navarias[j] == onevar:
+
+                    intervarf = in_campomat[j]
+                    interlevf = in_levs[j]
+                    ubic = j
+
+        try:
+
+            varinterm = Rinterm({},{},interlevf,intervarf)
+
+            varinterm.general['VERSION'] = lfin_version[ubic]
+            varinterm.general['HDATE'] = lfin_hdate[ubic]
+            varinterm.general['XFCST'] = lfin_xfcst[ubic]
+            varinterm.general['MAP_SOURCE'] = lfin_map_source[ubic]
+            varinterm.general['FIELD'] = onevar
+            varinterm.general['UNITS'] = lfin_units[ubic]
+            varinterm.general['DESC'] = lfin_desc[ubic]
+            varinterm.general['XLVL'] = in_levs[ubic]
+            varinterm.general['NX'] = lfin_nx[ubic]
+            varinterm.general['NY'] = lfin_ny[ubic]
+            varinterm.geoinfo['IPROJ'] = lfin_iproj[ubic]
+            varinterm.general['EARTH_RADIUS'] = lfin_earth_radius[ubic]
+            varinterm.general['IS_WIND_EARTH_REL'] = lfin_is_wind[ubic]
+
+            if varinterm.geoinfo['IPROJ'] == 0:
+
+                varinterm.geoinfo['PROJ'] = 'Cylindrical Equidistant (0)'
+                varinterm.geoinfo['STARTLOC'] = lfin_startloc[ubic]
+                varinterm.geoinfo['STARTLAT'] = lfin_startlat[ubic]
+                varinterm.geoinfo['STARTLON'] = lfin_startlon[ubic]
+                varinterm.geoinfo['DELTALAT'] = lfin_deltalat[ubic]
+                varinterm.geoinfo['DELTALON'] = lfin_deltalon[ubic]
+
+
+
+            elif varinterm.geoinfo['IPROJ'] == 1:
+
+                varinterm.geoinfo['PROJ'] = 'Mercator (1)'
+                varinterm.geoinfo['STARTLOC'] = lfin_startloc[ubic]
+                varinterm.geoinfo['STARTLAT'] = lfin_startlat[ubic]
+                varinterm.geoinfo['STARTLON'] = lfin_startlon[ubic]
+                varinterm.geoinfo['DX'] = lfin_dx[ubic]
+                varinterm.geoinfo['DY'] = lfin_dy[ubic]
+                varinterm.geoinfo['TRUELAT1'] = lfin_truelat1[ubic]
+
+
+
+            elif varinterm.geoinfo['IPROJ'] == 3:
+
+                varinterm.geoinfo['PROJ'] = 'Lambert Comformal (3)'
+                varinterm.geoinfo['STARTLOC'] = lfin_startloc[ubic]
+                varinterm.geoinfo['STARTLAT'] = lfin_startlat[ubic]
+                varinterm.geoinfo['STARTLON'] = lfin_startlon[ubic]
+                varinterm.geoinfo['DX'] = lfin_dx[ubic]
+                varinterm.geoinfo['DY'] = lfin_dy[ubic]
+                varinterm.geoinfo['XLONC'] = lfin_xlonc[ubic]
+                varinterm.geoinfo['TRUELAT1'] = lfin_truelat1[ubic]
+                varinterm.geoinfo['TRUELAT2'] = lfin_truelat2[ubic]
+
+            elif varinterm.geoinfo['IPROJ'] == 4:
+
+                varinterm.geoinfo['PROJ'] = 'Gaussian (4)'
+                varinterm.geoinfo['STARTLOC'] = lfin_startloc[ubic]
+                varinterm.geoinfo['STARTLAT'] = lfin_startlat[ubic]
+                varinterm.geoinfo['STARTLON'] = lfin_startlon[ubic]
+                varinterm.geoinfo['NLATS'] = lfin_nlats[ubic]
+                varinterm.geoinfo['DELTALON'] = deltalon[ubic]
+
+
+            elif varinterm.geoinfo['IPROJ'] == 5:
+
+                varinterm.geoinfo['PROJ'] = 'Polar Stereographic (5)'
+                varinterm.geoinfo['STARTLOC'] = lfin_startloc[ubic]
+                varinterm.geoinfo['STARTLAT'] = lfin_startlat[ubic]
+                varinterm.geoinfo['STARTLON'] = lfin_startlon[ubic]
+                varinterm.geoinfo['DX'] = lfin_dx[ubic]
+                varinterm.geoinfo['DY'] = lfin_dy[ubic]
+                varinterm.geoinfo['XLONC'] = lfin_xlonc[ubic]
+                varinterm.geoinfo['TRUELAT1'] = lfin_truelat1[ubic]
+
+        except:
+            continue
+
+        totalvarias[onevar] = varinterm
+
+
+    return(totalvarias)
