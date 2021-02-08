@@ -44,48 +44,18 @@ For reading the intermediate files information you must utilize the function \te
 Example
 -------------
 .. code-block:: python
+
 	import numpy as np
 	import pywinter.winter as pyw
 	import data_example as data
 
-	infile = '/home/allyson/Documents/files/FILE:1994-05-18_06'
+	# For Cylindrical equidistant
+	# Read Geo-data (Latitudes and longitudes)
+	lat = data.variables['Latitude'][:] # degrees north
+	lon = data.variables['Longitude'][:] # degrees east
 
-	interfile = pyw.rinder(infile)
-
-	print(interfile.keys())
-	dict_keys(['LANDSEA', 'ST', 'SST', 'SOILHGT', 'PSFC', 'HGT', 'SKINTEMP', 'TT',
-	'PMSL', 'VV', 'SM', 'UU', 'RH', 'TT2M', 'RH2M', 'UU10M', 'VV10M'])
-
-	print(interfile['TT'].general)
-	{'VERSION': 5, 'HDATE': '2015-07-27_12:00:00', 'XFCST': 0.0, 'MAP_SOURCE': 'ECMWF',
-	'FIELD': 'TT', 'UNITS': 'K', 'DESC': 'Temperature', 'XLVL': '1000', 'NX': 441, 'NY': 329,
-	'EARTH_RADIUS': 6367.47021484375, 'IS_WIND_EARTH_REL': False}
-
-	print(interfile['TT'].geoinfo)
-	{'IPROJ': 0, 'PROJ': 'Cylindrical Equidistant (0)', 'STARTLOC': 'SWCORNER',
-	'STARTLAT': 38.0, 'STARTLON': -130.0, 'DELTALAT': -0.25, 'DELTALON': 0.25}
-
-	print(interfile['TT'].level)
-	[100000.  97500.  95000.  92500.  90000.  87500.  85000.  82500.  80000.
-	  77500.  75000.  70000.  65000.  60000.  55000.  50000.  45000.  40000.
-	  35000.  30000.  25000.  20000.  17500.  15000.  12500.  10000.   7000.
-	   5000.   3000.   2000.   1000.]
-	   
-	print(interfile['TT'].val)
-	[[[289.86547852 289.89868164 289.85571289 ... 294.19750977 294.20141602
-	   294.19360352]
-	  ...
-	  [278.23071289 277.93383789 277.69360352 ... 280.58032227 280.63500977
-	   280.70727539]]
-	   ...
-	 [[234.77418518 234.80836487 234.85231018 ... 232.22828674 232.20973206
-	   232.20582581]
-	   ...
-	  [213.70191956 213.95289612 214.19410706 ... 211.46461487 211.38844299
-	   211.31422424]]]
-	   
-	print(interfile['TT'].val.shape)
-	(31, 441, 329)
+	# create winter Geo-information
+	winter_geo = pwy.Geo0(lat,lon)
 
 
 Geo-Information (Geo)
