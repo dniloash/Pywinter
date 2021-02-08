@@ -37,9 +37,9 @@ or
 pip3 install pywinter
 
 
-Read intermediate files (rinder)
+Read intermediate files (rinter)
 ====================================
-For reading the intermediate files information you must utilize the function \textbf{rinder}. Once you have read the information you can manipulate the data easily. The results will be a dictionary that contains the variables in the intermediate file, also every key includes general information, geo information, levels, and the data array.
+For reading the intermediate files information you must utilize the function \textbf{rinter}. Once you have read the information you can manipulate the data easily. The results will be a dictionary that contains the variables in the intermediate file, also every key includes general information, geo information, levels, and the data array.
 
 Example
 -------------
@@ -50,7 +50,7 @@ Example
 
 	infile = '/home/allyson/Documents/files/FILE:1994-05-18_06'
 
-	interfile = pyw.rinder(infile)
+	interfile = pyw.rinter(infile)
 
 	print(interfile.keys())
 	>> dict_keys(['LANDSEA', 'ST', 'SST', 'SOILHGT', 'PSFC', 'HGT', 'SKINTEMP', 'TT',
