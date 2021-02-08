@@ -47,7 +47,6 @@ Example
 
 	import numpy as np
 	import pywinter.winter as pyw
-	import data_example as data
 
 	infile = '/home/allyson/Documents/files/FILE:1994-05-18_06'
 
