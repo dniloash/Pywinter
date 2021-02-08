@@ -4,10 +4,8 @@ import os
 from struct import unpack
 import KreatE_inter_m_f as creattee_inter
 
-
 #COMPILE
 #f2py -c KreatE_inter_m_f.f90 -m KreatE_inter_m_f
-
 
 class Interm:
     
