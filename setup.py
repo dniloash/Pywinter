@@ -7,7 +7,7 @@ setup(
   name = 'pywinter',
   packages = ['pywinter'],
   ext_modules = [ext1], # this must be the same as the name above
-  version = '2.0.1',
+  version = '2.0.2',
   description = 'Read and Create WRF-WPS intermediate files',
   long_description=("Python lib for reading/creating WRF-WPS intermediate files.\n\n "
                       "Documentation:\n\n"
@@ -15,7 +15,7 @@ setup(
   author = 'Danilo A Suarez H',
   author_email = 'dniloash@gmail.com',
   url = 'https://github.com/dniloash/Pywinter',
-  download_url = 'https://github.com/dniloash/Pywinter/tarball/2.0.1',
+  download_url = 'https://github.com/dniloash/Pywinter/tarball/2.0.2',
   keywords = ['Python', 'WRF', 'WPS','Intermediate files'],
   classifiers = [],
   python_requires='>=3.6',
