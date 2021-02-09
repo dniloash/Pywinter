@@ -365,6 +365,7 @@ class V2d(Vuser):
         self.lev = lev
 
         self.verifdim()
+        #a,b,c = self.idvar()
 
     def verifdim(self):
          
@@ -443,6 +444,9 @@ class V2d(Vuser):
             uni = 'K'
             lev = '200100'
 
+        else:
+            raise Error('<'+self.name+'>'+' is not available for V2d. You can create a new field by this way V2d(nom,field,desc,units,level). please check the documentation')
+
         return nom,uni,lev
 
             
@@ -453,6 +457,7 @@ class V3d(Vuser):
         self.field = field
 
         self.verifdim()
+        a,b = self.idvar()
 
     def verifdim(self):
          
@@ -489,6 +494,9 @@ class V3d(Vuser):
             nom = '3-d pressure '
             uni = 'Pa'
 
+        else:
+            raise Error('<'+self.name+'>'+' is not valid V3d variable name')
+
         return nom,uni
 
 
@@ -500,6 +508,7 @@ class V3dp(Vuser):
         self.plevs = plevs
 
         self.verifdim()
+        a,b = self.idvar()
 
     def verifdim(self):
          
@@ -508,7 +517,7 @@ class V3dp(Vuser):
 
         if self.plevs.shape[0] != self.field.shape[0]:
             raise Error('number of pressure levels must match with 3D field')
-            
+
 
     def idvar(self):
         
@@ -536,6 +545,10 @@ class V3dp(Vuser):
             nom = '3-d geopotential height '
             uni = 'm'
 
+        else:
+            raise Error('<'+self.name+'>'+' is not valid V3dp variable name')
+
+
         return nom,uni
 
 
@@ -548,6 +561,7 @@ class Vsl(Vuser):
 
         self.verifdim()
         self.veriflevs()
+        a,b,c = self.idvar()
 
 
     def verifdim(self):
@@ -605,6 +619,10 @@ class Vsl(Vuser):
             nom = 'Soil temperature '
             uni = 'K'
             lev = '200100'
+
+        else:
+            raise Error('<'+self.name+'>'+' is not valid Vsl variable name')
+
 
         return nom,uni,lev
 
@@ -1018,7 +1036,6 @@ def cinter(filen,date,geoinfo,varias,rout=''):
 
             varia2d = Var2d(varia)
             varia2d.set_atr()
-
             variasf.append(varia2d)
 
 
