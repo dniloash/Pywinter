@@ -241,6 +241,25 @@ Example
 	winter_v10 = pyw.V2d('VV',u10m)
 
 
+2D not avalaible name fields (create new 2d fields)
+-----------------------------------------------------
+
+The 2D fields listed in the Table are the most important, however exists more 2D fields that are less common but can be useful for some WRF applications, for this reason it is also possible to add your own variables to pywinter. For doing this, it is necessary give to the function additional information about the field description, units and pressure level:
+
+
+.. code-block:: python
+
+	import numpy as np
+	import pywinter.winter as pyw
+	import data_example as data
+
+	# Read 2D data 
+	pmaxw = data.variables['pmax'][:,:]
+
+	# Create new winter 2D fields
+	winter_new = pyw.V2d('PMAXW',pmaxw,'Pressure at max wind level','Pa','200100')
+
+
 3D non-isobaric Field (V3d)
 ====================================
 Vertical non-isobaric atmospehere variables
