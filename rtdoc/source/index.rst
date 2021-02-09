@@ -53,12 +53,12 @@ Example
 	interfile = pyw.rinter(infile)
 
 	print(interfile.keys())
-	>> dict_keys(['LANDSEA', 'ST', 'SST', 'SOILHGT', 'PSFC', 'HGT', 'SKINTEMP', 'TT',
+	>> dict_keys(['LANDSEA', 'ST', 'SST', 'SOILHGT', 'PSFC', 'GTH', 'SKINTEMP', 'TT',
 	'PMSL', 'VV', 'SM', 'UU', 'RH', 'TT2M', 'RH2M', 'UU10M', 'VV10M'])
 
 	print(interfile['TT'].general)
 	>> {'VERSION': 5, 'HDATE': '2015-07-27_12:00:00', 'XFCST': 0.0, 'MAP_SOURCE': 'ECMWF',
-	'FIELD': 'TT', 'UNITS': 'K', 'DESC': 'Temperature', 'XLVL': '1000', 'NX': 441, 'NY': 329,
+	'FIELD': 'TT', 'UNITS': 'K', 'DESC': 'Temperature', 'XLVL': '1000', 'NX': 329, 'NY': 441,
 	'EARTH_RADIUS': 6367.47021484375, 'IS_WIND_EARTH_REL': False}
 
 	print(interfile['TT'].geoinfo)
@@ -85,7 +85,7 @@ Example
 	   211.31422424]]]
 	   
 	print(interfile['TT'].val.shape)
-	>> (31, 441, 329)
+	>> (31, 329, 441)
 
 
 Creating Intermediate files
