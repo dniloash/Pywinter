@@ -4,8 +4,10 @@ import os
 from struct import unpack
 import KreatE_inter_m_f as creattee_inter
 
+
 #COMPILE
 #f2py -c KreatE_inter_m_f.f90 -m KreatE_inter_m_f
+
 
 class Interm:
     
@@ -1306,6 +1308,11 @@ def rinter(filen):
 
     lfin_is_wind = [bool(i) for i in lfin_is_wind ]
 
+
+    for i in range(len(in_navarias)):
+        if in_navarias[i] == 'HGT':
+            in_navarias[i] = 'GHT'
+
     onesvarno = list(set(in_navarias))
 
     onesvar = []
@@ -1346,7 +1353,7 @@ def rinter(filen):
                 if in_navarias[j][0:2] == onevar:
 
                     intervar.append(in_campomat[j])
-                    interlev.append(in_navarias[j]) 
+                    interlev.append(in_navarias[j][2:]) 
                     ubic = j
 
 
@@ -1366,10 +1373,9 @@ def rinter(filen):
             for j in range(len(in_navarias)):
 
                 if in_navarias[j][0:5] == onevar:
-                    print(in_navarias[j])
 
                     intervar.append(in_campomat[j])
-                    interlev.append(in_navarias[j]) 
+                    interlev.append(in_navarias[j][5:]) 
 
 
             for j in range(len(intervar)):
@@ -1378,7 +1384,7 @@ def rinter(filen):
             interlevf = [j[0:] for j in interlev]
 
 
-        elif onevar == 'TT' or onevar == 'RH' or onevar == 'SPECHUMD' or onevar == 'UU' or onevar == 'VV' or onevar == 'GHT'  or onevar == 'PRESSURE':
+        elif onevar == 'TT' or onevar == 'RH' or onevar == 'SPECHUMD' or onevar == 'UU' or onevar == 'VV' or onevar == 'GHT' or onevar=='HGT' or onevar == 'PRESSURE':
 
             intervar = []
             interlev = []
@@ -1394,6 +1400,7 @@ def rinter(filen):
                         ubic = j
                         intervar.append(in_campomat[j])
                         interlev.append(in_levs[j])
+
 
 
             intervarf = np.zeros([len(intervar),in_ny,in_nx])*np.nan
