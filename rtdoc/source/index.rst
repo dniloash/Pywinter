@@ -260,6 +260,8 @@ The 2D fields listed in the Table are the most important, however exists more 2D
 	winter_new = pyw.V2d('PMAXW',pmaxw,'Pressure at max wind level','Pa','200100')
 
 
+You must use 200100 for surface data and 201300 for sea level pressure data. Also it is very important to remember that all the fields you add must be in accordance with the information processed by metgrid.exe, you can get more information about this in the METGRID.TBL file or in the VTABLE files.
+
 3D non-isobaric Field (V3d)
 ====================================
 Vertical non-isobaric atmospehere variables
