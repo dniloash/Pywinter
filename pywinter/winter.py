@@ -217,14 +217,16 @@ class Var:
 
 class Var2d(Var):
 
-    def __init__(self,var2d,fnam='',unit='',desc='',levl='',field=[]):
+    def __init__(self,var2d,fnam='',unit='',desc='',levl='',field=None):
 
         Var.__init__(self,fnam,unit,desc,levl,field)
         self.var2d = var2d
 
     def set_atr(self):
 
+    
         ffield = self.var2d.field
+        ffield = ffield.copy()
         ffield[~np.isfinite(ffield)]= np.nan
 
         try:
@@ -257,7 +259,7 @@ class Var2d(Var):
 
 class Var3d(Var):
 
-    def __init__(self,var3d,fnam='',unit='',desc='',levl=[],field=[]):
+    def __init__(self,var3d,fnam='',unit='',desc='',levl=[],field=None):
 
         Var.__init__(self,fnam,unit,desc,levl,field)
         self.var3d = var3d
@@ -265,6 +267,7 @@ class Var3d(Var):
     def set_atr(self):
 
         ffield = self.var3d.field
+        ffield = ffield.copy()
         ffield[~np.isfinite(ffield)]= np.nan
 
         try:
@@ -289,7 +292,7 @@ class Var3d(Var):
 
 class Var3dp(Var):
 
-    def __init__(self,var3dp,fnam='',unit='',desc='',levl=[],field=[]):
+    def __init__(self,var3dp,fnam='',unit='',desc='',levl=None,field=None):
 
         Var.__init__(self,fnam,unit,desc,levl,field)
         self.var3dp = var3dp
@@ -298,6 +301,7 @@ class Var3dp(Var):
     def set_atr(self):
 
         ffield = self.var3dp.field
+        ffield = ffield.copy()
         ffield[~np.isfinite(ffield)]= np.nan
 
         try:
@@ -318,7 +322,7 @@ class Var3dp(Var):
 
 class Varsl(Var):
 
-    def __init__(self,varsl,fnam='',unit='',desc='',levl='',slev=[],field=[]):
+    def __init__(self,varsl,fnam='',unit='',desc='',levl='',slev=[],field=None):
 
         Var.__init__(self,fnam,unit,desc,levl,field)
         self.varsl = varsl
@@ -327,6 +331,7 @@ class Varsl(Var):
     def set_atr(self):
 
         ffield = self.varsl.field
+        ffield = ffield.copy()
         ffield[~np.isfinite(ffield)]= np.nan
 
         try:
