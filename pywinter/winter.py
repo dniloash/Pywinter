@@ -925,8 +925,6 @@ class Geo05(Geoinfo):
 
         tlat1 = self.geoin.tlat1
   
-        tlat2 = self.geoin.tlat2
-
         iswin = self.geoin.iswin
 
         self.iproj = 5
