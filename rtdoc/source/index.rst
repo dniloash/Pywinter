@@ -110,7 +110,7 @@ Geo0
 :Geo0(stlat,stlon,dlat,dlon):
 
 - stlat: SOUTH-WEST corner latitude of data (degrees north)
-- stlon: SOUTH-WEST corner longitude of data (degrees north)
+- stlon: SOUTH-WEST corner longitude of data (degrees east)
 - dlat: latitude increment (degrees)
 - dlon: longitude increment (degrees)
 
@@ -122,7 +122,7 @@ Geo1
 :Geo1(stlat,stlon,dx,dy,tlat1):
 
 - stlat: SOUTH-WEST corner latitude of data (degrees north)
-- stlon: SOUTH-WEST corner longitude of data (degrees north)
+- stlon: SOUTH-WEST corner longitude of data (degrees east)
 - dx: Grid spacing in x (Km)
 - dy: Grid spacing in y (Km)
 - tlat1: True latitude 1 of projection (degrees north)
@@ -134,7 +134,7 @@ Geo3
 :Geo3(stlat,stlon,dx,dy,xloc,tlat1,tlat2,iswin):
 
 - stlat: SOUTH-WEST corner latitude of data (degrees north)
-- stlon: SOUTH-WEST corner longitude of data (degrees north)
+- stlon: SOUTH-WEST corner longitude of data (degrees east)
 - dx: Grid spacing in x (Km)
 - dy: Grid spacing in y (Km)
 - xloc: Center longitude of projection
@@ -150,7 +150,7 @@ Geo4
 :Geo4(stlat,stlon,nlats,dlon,iswin):
 
 - stlat: SOUTH-WEST corner latitude of data (degrees north)
-- stlon: SOUTH-WEST corner longitude of data (degrees north)
+- stlon: SOUTH-WEST corner longitude of data (degrees east)
 - nlats: Number of latitudes north of equator
 - dlon: longitude increment (degrees)
 - iswin: Earth[False] or source grid[True] rotated winds
@@ -163,7 +163,7 @@ Geo5
 :Geo5(stlat,stlon,dx,dy,xloc,tlat1,iswin):
 
 - stlat: SOUTH-WEST corner latitude of data (degrees north)
-- stlon: SOUTH-WEST corner longitude of data (degrees north)
+- stlon: SOUTH-WEST corner longitude of data (degrees east)
 - dx: Grid spacing in x (Km)
 - dy: Grid spacing in y (Km)
 - xloc: Center longitude of projection
