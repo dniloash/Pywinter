@@ -513,7 +513,7 @@ More examples here :download:`link <https://github.com/dniloash/Pywinter/tree/ma
 Contact
 ====================================
 
-Pywinter have been tested with success for many cases but its yet an early version and it can be improved. if you have any problem our suggestion please contact to dniloash@gmail.com
+Pywinter have been tested with success for many cases but its yet an early version and it can be improved. if you have any problem or suggestion please contact to dniloash@gmail.com
 
 Indices and tables
 ==================
