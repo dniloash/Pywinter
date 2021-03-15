@@ -314,7 +314,7 @@ Vertical isobaric atmospehere variables
 
 - name: WPS field name (see table)
 - field: 3D array [plev,lat,lon]
-- plevs: 1D arra of pressure levels (Pa)
+- plevs: 1D array of pressure levels (Pa)
 
 
 3D isobaric avalaible name fields
