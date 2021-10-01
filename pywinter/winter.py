@@ -427,7 +427,8 @@ class V2d(Vuser):
         elif self.name == 'SST':
             nom = 'Sea surface temperature'
             uni = 'K'
-            lev = '201300'
+            if len(self.lev) == 0:
+                lev = '201300'
 
         elif self.name == 'SEAICE':
             nom = 'Sea-ice-fraction'
