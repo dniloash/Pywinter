@@ -429,6 +429,8 @@ class V2d(Vuser):
             uni = 'K'
             if len(self.lev) == 0:
                 lev = '201300'
+            else:
+                lev = self.lev
 
         elif self.name == 'SEAICE':
             nom = 'Sea-ice-fraction'
