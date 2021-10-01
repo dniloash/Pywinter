@@ -15,7 +15,7 @@ setup(
   author = 'Danilo A Suarez H',
   author_email = 'dniloash@gmail.com',
   url = 'https://github.com/dniloash/Pywinter',
-  download_url = 'https://github.com/dniloash/Pywinter/tarball/2.0.5',
+  download_url = 'https://github.com/dniloash/Pywinter/master',
   keywords = ['Python', 'WRF', 'WPS','Intermediate files'],
   classifiers = [],
   python_requires='>=3.6',
