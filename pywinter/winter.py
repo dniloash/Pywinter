@@ -1255,11 +1255,11 @@ def rinter(filen):
 
                 
             elif(in_iproj == 4):
-                in_startlat = struct.unpack('>f', record3[8:12])[0]
-                in_startlon = struct.unpack('>f', record3[12:16])[0]
-                in_nlats = struct.unpack('>f', record3[16:20])[0]
-                in_deltalon = struct.unpack('>f', record3[20:24])[0]
-                in_earth_radius = struct.unpack('>f', record3[24:28])[0]
+                in_startlat = unpack('>f', record3[8:12])[0]
+                in_startlon = unpack('>f', record3[12:16])[0]
+                in_nlats = unpack('>f', record3[16:20])[0]
+                in_deltalon = unpack('>f', record3[20:24])[0]
+                in_earth_radius = unpack('>f', record3[24:28])[0]
 
                 lfin_startlat.append(in_startlat)
                 lfin_startlon.append(in_startlon)
@@ -1521,7 +1521,7 @@ def rinter(filen):
                 varinterm.geoinfo['STARTLAT'] = lfin_startlat[ubic]
                 varinterm.geoinfo['STARTLON'] = lfin_startlon[ubic]
                 varinterm.geoinfo['NLATS'] = lfin_nlats[ubic]
-                varinterm.geoinfo['DELTALON'] = deltalon[ubic]
+                varinterm.geoinfo['DELTALON'] = lfin_deltalon[ubic]
 
 
             elif varinterm.geoinfo['IPROJ'] == 5:
