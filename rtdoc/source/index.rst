@@ -179,13 +179,16 @@ Example
 	import pywinter.winter as pyw
 	import data_example as data
 
-	# For Cylindrical equidistant
 	# Read Geo-data (Latitudes and longitudes)
 	lat = data.variables['Latitude'][:] # degrees north
 	lon = data.variables['Longitude'][:] # degrees east
 
-	# create winter Geo-information
-	winter_geo = pwy.Geo0(lat,lon)
+	dlat = np.abs(lat[1] - lat[0])
+	dlon = np.abs(lon[1] - lon[0])
+
+	# create winter Geo-information for cylindrical equidistant projection
+	winter_geo = pwy.Geo0(lat[0],lon[0],dlat,dlon)
+
 
 
 
