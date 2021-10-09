@@ -382,7 +382,10 @@ class V2d(Vuser):
         elif self.name == 'PMSL':
             nom = 'Mean sea-level pressure'
             uni = 'Pa'
-            lev = '201300'
+            if len(self.lev) == 0:
+                lev = '201300'
+            else:
+                lev = self.lev
             
         elif self.name == 'SKINTEMP':
             nom = 'Skin temperature'
