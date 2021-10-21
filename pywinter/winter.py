@@ -1403,7 +1403,8 @@ def rinter(filen):
                     intervar.append(in_campomat[j])
                     interlev.append(in_navarias[j][5:]) 
 
-
+            intervarf = np.zeros([len(intervar),in_ny,in_nx])*np.nan
+            
             for j in range(len(intervar)):
                 intervarf[j,:,:] = intervar[j]
 
