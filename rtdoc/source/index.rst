@@ -403,8 +403,8 @@ Example
 	slm_level = ['010','040','100','200']
 
 	# Create winter 3D soil fields
-	winter_soilt_layer = pyw.Vsl('ST',soilt_lay,sl_layer)
-	winter_soitm_level = pyw.Vsl('SOILM',soilt_lev,sl_level)
+	winter_soilt_layer = pyw.Vsl('ST',soilt_lay,slt_layer)
+	winter_soitm_level = pyw.Vsl('SOILM',soilt_lev,slm_level)
 
 
 Create intermediate files (cinter)
