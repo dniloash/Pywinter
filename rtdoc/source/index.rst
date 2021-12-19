@@ -109,10 +109,10 @@ Geo0
 
 :Geo0(stlat,stlon,dlat,dlon):
 
-- stlat: SOUTH-WEST corner latitude of data (degrees north)
-- stlon: SOUTH-WEST corner longitude of data (degrees east)
-- dlat: latitude increment (degrees)
-- dlon: longitude increment (degrees)
+- **stlat**: SOUTH-WEST corner latitude of data (**degrees north**)
+- **stlon**: SOUTH-WEST corner longitude of data (**degrees east**)
+- **dlat**: latitude increment (**degrees**)
+- **dlon**: longitude increment (**degrees**)
 
 
 Geo1
@@ -121,11 +121,11 @@ Geo1
 
 :Geo1(stlat,stlon,dx,dy,tlat1):
 
-- stlat: SOUTH-WEST corner latitude of data (degrees north)
-- stlon: SOUTH-WEST corner longitude of data (degrees east)
-- dx: Grid spacing in x (Km)
-- dy: Grid spacing in y (Km)
-- tlat1: True latitude 1 of projection (degrees north)
+- **stlat**: SOUTH-WEST corner latitude of data (**degrees north**)
+- **stlon**: SOUTH-WEST corner longitude of data (**degrees east**)
+- **dx**: Grid spacing in x (**Km**)
+- **dy**: Grid spacing in y (**Km**)
+- **tlat1**: True latitude 1 of projection (**degrees north**)
 
 Geo3
 -------------
@@ -133,14 +133,14 @@ Geo3
 
 :Geo3(stlat,stlon,dx,dy,xloc,tlat1,tlat2,iswin):
 
-- stlat: SOUTH-WEST corner latitude of data (degrees north)
-- stlon: SOUTH-WEST corner longitude of data (degrees east)
-- dx: Grid spacing in x (Km)
-- dy: Grid spacing in y (Km)
-- xloc: Center longitude of projection
-- tlat1: True latitude 1 of projection (degrees north)
-- tlat2: True latitude 2 of projection (degrees north)
-- iswin: Earth[False] or source grid[True] rotated winds
+- **stlat**: SOUTH-WEST corner latitude of data (**degrees north**)
+- **stlon**: SOUTH-WEST corner longitude of data (**degrees east**)
+- **dx**: Grid spacing in x (**Km**)
+- **dy**: Grid spacing in y (**Km**)
+- **xloc**: Center longitude of projection
+- **tlat1**: True latitude 1 of projection (**degrees north**)
+- **tlat2**: True latitude 2 of projection (**degrees north**)
+- **iswin**: Earth[**False**] or source grid[**True**] rotated winds
 
 Geo4
 -------------
@@ -149,11 +149,11 @@ Geo4
 
 :Geo4(stlat,stlon,nlats,dlon,iswin):
 
-- stlat: SOUTH-WEST corner latitude of data (degrees north)
-- stlon: SOUTH-WEST corner longitude of data (degrees east)
-- nlats: Number of latitudes north of equator
-- dlon: longitude increment (degrees)
-- iswin: Earth[False] or source grid[True] rotated winds
+- **stlat**: SOUTH-WEST corner latitude of data (**degrees north**)
+- **stlon**: SOUTH-WEST corner longitude of data (**degrees east**)
+- **nlats**: Number of latitudes north of equator
+- **dlon**: longitude increment (**degrees**)
+- **iswin**: Earth[**False**] or source grid[**True**] rotated winds
 
 
 Geo5
@@ -162,13 +162,13 @@ Geo5
 
 :Geo5(stlat,stlon,dx,dy,xloc,tlat1,iswin):
 
-- stlat: SOUTH-WEST corner latitude of data (degrees north)
-- stlon: SOUTH-WEST corner longitude of data (degrees east)
-- dx: Grid spacing in x (Km)
-- dy: Grid spacing in y (Km)
-- xloc: Center longitude of projection
-- tlat1: True latitude 1 of projection (degrees north)
-- iswin: Earth[False] or source grid[True] rotated winds
+- **stlat**: SOUTH-WEST corner latitude of data (**degrees north**)
+- **stlon**: SOUTH-WEST corner longitude of data (**degrees east**)
+- **dx**: Grid spacing in x (**Km**)
+- **dy**: Grid spacing in y (**Km**)
+- **xloc**: Center longitude of projection
+- **tlat1**: True latitude 1 of projection (**degrees north**)
+- **iswin**: Earth[**False**] or source grid[**True**] rotated winds
 
 
 Example
@@ -198,8 +198,8 @@ Surface variables
 
 :V2d(name,field):
 
-- name: WPS field name (see table)
-- field: 2D array [lat,lon]
+- **name**: WPS field name (see table)
+- **field**: 2D array [lat,lon]
 
 
 2D avalaible name fields
@@ -271,8 +271,8 @@ Vertical non-isobaric atmospehere variables
 
 :V3d(name,field):
 
-- name: WPS field name (see table)
-- field: 3D array [lev,lat,lon]
+- **name**: WPS field name (see table)
+- **field**: 3D array [lev,lat,lon]
 
 
 3D non-isobaric avalaible name fields
@@ -315,9 +315,9 @@ Vertical isobaric atmospehere variables
 
 :V3dp(name,field,plevs):
 
-- name: WPS field name (see table)
-- field: 3D array [plev,lat,lon]
-- plevs: 1D array of pressure levels (Pa)
+- **name**: WPS field name (see table)
+- **field**: 3D array [plev,lat,lon]
+- **plevs**: 1D array of pressure levels (**Pa**)
 
 
 3D isobaric avalaible name fields
@@ -363,9 +363,9 @@ Soil level variables
 
 :Vsl(name,field,levs):
 
-- name: WPS field name (see table)
-- field: 3D array [lev,lat,lon]
-- levs: 1D list of string soil levels in cm
+- **name**: WPS field name (see table)
+- **field**: 3D array [lev,lat,lon]
+- **levs**: 1D list of string soil levels in **cm**
 
 
 3D soil avalaible name fields
@@ -516,7 +516,7 @@ More examples here :download:`link <https://github.com/dniloash/Pywinter/tree/ma
 Contact
 ====================================
 
-Pywinter have been tested with success for many cases but its yet an early version and it can be improved. if you have any problem or suggestion please contact to dniloash@gmail.com
+Pywinter have been tested with success for many cases but its yet an early version and it can be improved. If you have any problem or suggestion please contact to dniloash@gmail.com
 
 Indices and tables
 ==================
