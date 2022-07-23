@@ -516,7 +516,7 @@ More examples here :download:`link <https://github.com/dniloash/Pywinter/tree/ma
 Contact
 ====================================
 
-Pywinter have been tested with success for many cases but its yet an early version and it can be improved. If you have any problem or suggestion please contact to dniloash@gmail.com
+dniloash@gmail.com
 
 Indices and tables
 ==================
