@@ -376,13 +376,13 @@ Field name           Units          Description                  Notes
 ==================   ============   =========================    ============================================
 SM                   m^3/m^3        Soil moisture                'ttt' is layer top, 'bbb' is layer bottom
 ST                   K              Soil temperature             'ttt' is layer top, 'bbb' is layer bottom
-SOILM                kg^3/m^3       Soil moisture                'mmm' is tthe level depth
+SOILM                kg/m^3         Soil moisture                'mmm' is tthe level depth
 SOILT                K              Soil temperature             'mmm' is tthe level depth
 ==================   ============   =========================    ============================================
 
 Is important to know that if you have ST or SM, you must indicate the layer as [*bbbttt*] (top layer - bottom layer in cm) and if you have SOILT or SOILM, you must indicate the level as [*mmm*] (level depth in cm). 
 
-Aditionally if you have ST then SOILT is needed. if you have SM then SOILM is needed. 
+Aditionally if you have ST then SOILT is not needed. If you have SM then SOILM not is needed. 
 
 Soil fields are used to be masked fields, so you must make sure to convert the missing values to numpy nan before create the pywinter soil field.
 
