@@ -395,8 +395,8 @@ Example
 	import data_example as data
 
 	# Read 3D soil data (temperature and moisture)
-	soilt_lay = data.variables['SLTY'][:,:,:]
-	soilm_lev = data.variables['SLTL'][:,:,:]
+	soilt_lay = data.variables['SLTY'][:,:,:] # m^3/m^3
+	soilm_lev = data.variables['SLTL'][:,:,:] # kg/m^3
 
 	# 3D soil layers and levels 
 	slt_layer = ['000010','010040','040100','100200']
