@@ -3,7 +3,7 @@ import numpy as np
 import os
 from struct import unpack
 import KreatE_inter_m_f as creattee_inter
-
+import platform
 
 #COMPILE
 #f2py -c KreatE_inter_m_f.f90 -m KreatE_inter_m_f
@@ -146,9 +146,14 @@ class Interm:
             xlonc = self.geoinfo['XLONC']
             tlat1 = self.geoinfo['TRUELAT1']
             iswin = self.geoinfo['IS_WIND_EARTH_REL']
-            
+
         
-        ns = self.rout+self.filen+':'+self.hdat
+        ns = self.rout+self.filen+':'+self.hdat   
+        os_name = platform.system()
+        if os_name == 'Windows':
+            # Windows does not support file names containing
+            # : ? * | < > \ /
+            ns = self.rout+self.filen+'.'+self.hdat
         
         fci = self.hdat
         
