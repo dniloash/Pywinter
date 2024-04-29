@@ -1,0 +1,24 @@
+[build-system]
+build-backend = 'mesonpy'
+#backend-path = ['.']
+requires = [
+  'meson-python'
+#  'meson >= 0.63.3; python_version < "3.12"',
+#  'meson >= 1.2.3; python_version >= "3.12"',
+#  'packaging >= 19.0',
+#  'pyproject-metadata >= 0.7.1',
+#  'tomli >= 1.0.0; python_version < "3.11"',
+]
+
+
+[project]
+name = 'meson-python'
+description = 'Meson Python build backend'
+readme = 'README.md'
+requires-python = '>= 3.6'
+license = { file = 'LICENSE' }
+keywords = ['Python', 'WRF', 'WPS','Intermediate files']
+autors = [
+  { name = 'Danilo A Suarez H', email = 'dniloash@gmail.com' },
+]
+
