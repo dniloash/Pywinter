@@ -19,4 +19,4 @@ py3_dep = py3.dependency()
 # Compilers
 add_languages('fortran', native: false)
 
-subdir('python/pywinter')
+#subdir('python/pywinter')
