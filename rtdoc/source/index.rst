@@ -439,8 +439,8 @@ Example
 	# Read Geo-data
 	lat = data.variables['Latitude'][:]
 	lon = data.variables['Longitude'][:]
-	dlat = np.abs(lat[1]-lat[0])
-	dlon = np.abs(lon[1]-lon[0])
+	dlat = lat[1]-lat[0]
+	dlon = lon[1]-lon[0]
 	# Read 2D data 
 	tp2m = data.variables['T2'][:,:]
 	# Read 3D data 
