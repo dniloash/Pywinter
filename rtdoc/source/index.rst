@@ -183,8 +183,8 @@ Example
 	lat = data.variables['Latitude'][:] # degrees north
 	lon = data.variables['Longitude'][:] # degrees east
 
-	dlat = np.abs(lat[1] - lat[0])
-	dlon = np.abs(lon[1] - lon[0])
+	dlat = lat[1] - lat[0]
+	dlon = lon[1] - lon[0]
 
 	# create winter Geo-information for cylindrical equidistant projection
 	winter_geo = pwy.Geo0(lat[0],lon[0],dlat,dlon)
