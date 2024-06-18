@@ -12,7 +12,7 @@ build:
 
 python:
    install:
-     - requirements: docs/requirements.txt
+     - requirements: rtdoc/requirements.txt
 
 # Build documentation in the docs/ directory with Sphinx
 sphinx:
