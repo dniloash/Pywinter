@@ -5,9 +5,9 @@
 
 pywinter
 ====================================
-Python WRF-WPS Intermediate Files
+Python WPS Intermediate Files
 
-Pywinter is a Python3 library designed for handling files in WRF-WPS intermediate file format. Usually you don't need to deal with the intermediate files by your own because that is the function of ungrib.exe, but sometimes you don't have your meteorological data in GRIB format. Pywinter allows to read and create intermediate files by a simple way.
+Pywinter is a Python3 library designed for handling files in MPAS/WRF-WPS intermediate file format. Usually you don't need to deal with the intermediate files by your own because that is the function of ungrib.exe, but sometimes you don't have meteorological data in GRIB format. Pywinter allows to read and create intermediate files by a simple way.
 
 
 
@@ -95,13 +95,14 @@ Before create intermediate files (cinter function), you must use the Geo-informa
 
 Geo-Information (Geo)
 ====================================
-This funtions ares utilized to locate the information in the space. There are several kind of geo-info, it depends on projection of the original data:
+This funtions are utilized to locate the information in the space. There are several kind of geo-info, it depends on projection of the original data:
 
 - 0:  Cylindrical Equidistant (Lat/lon)
 - 1:  Mercator projection
 - 3:  Lambert conformal conic
 - 4: Gaussian [global only] (Transverse mercator)
 - 5:  Polar-stereographic projection
+
 
 Geo0
 -------------
@@ -180,6 +181,7 @@ Example
 	import data_example as data
 
 	# Read Geo-data (Latitudes and longitudes)
+
 	lat = data.variables['Latitude'][:] # degrees north
 	lon = data.variables['Longitude'][:] # degrees east
 
@@ -190,6 +192,7 @@ Example
 	winter_geo = pwy.Geo0(lat[0],lon[0],dlat,dlon)
 
 
+The latitude and longitude must be ordered from the lower to the higher in degrees north and degrees east, therefore the 2D, 3D or soil data array must be according to the respective coordinates.
 
 
 2D Field (V2d)
@@ -222,6 +225,7 @@ SEAICE               fraction       Sea-ice fraction
 SNOW                 kg/m^2         Water equivalent snow depth
 TAVGSFC              K              Daily mean of surface air
 ==================   ============   =============================       ============
+
 
 Some 2D fields are masked fields, so you must make sure to convert the missing values to numpy nan before create the pywinter 2d field.
 
@@ -267,7 +271,7 @@ You must use 200100 for surface data and 201300 for sea level pressure data. Als
 
 3D non-isobaric Field (V3d)
 ====================================
-Vertical non-isobaric atmospehere variables
+Vertical non-isobaric atmosphere variables
 
 :V3d(name,field):
 
@@ -311,7 +315,7 @@ Example
 
 3D isobaric Field (V3dp)
 ====================================
-Vertical isobaric atmospehere variables
+Vertical isobaric atmosphere variables
 
 :V3dp(name,field,plevs):
 
@@ -495,7 +499,7 @@ IMPORTANT WARNING
 Final notes
 ====================================
 
-Actually pywinter can't check if you write the file with all the necessary fields to run WRF, neither cannot check if your information is consistent, therefore is important you make sure the data is well before you create the files, you can get more information of how to create good files in the WRF User guide and WRF web tutorial, also you can check the intermediate files with WPS util programs:
+Actually pywinter can't check if you write the file with all the necessary fields to run WRF, neither cannot check if your information is consistent, therefore is important you make sure the data is well before you create the files, and also double check the met_em files after metgrid.exe. You can get more information of how to create good files in the WRF User guide and WRF web tutorial, also you can check the intermediate files with WPS util programs:
 
 - .../WRF/WPS/util/rd\_intermediate.exe: It reads fields into intermediate files and show them
 - .../WRF/WPS/util/int2nc.exe: it converts intermediate files to netCDF format.
