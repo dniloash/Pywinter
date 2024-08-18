@@ -194,6 +194,8 @@ Example
 
 The latitude and longitude must be ordered from the lower to the higher in degrees north and degrees east, therefore the 2D, 3D or soil data array must be according to the respective coordinates.
 
+Here you can find some examples about selecting SW-CORNER properly > :download:`examples <https://github.com/dniloash/Pywinter/blob/master/examples/data_lat_lon_example.ipynb>`
+
 
 2D Field (V2d)
 ====================================
