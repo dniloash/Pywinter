@@ -13,7 +13,9 @@ pywinter requires:
 Fortran compiler (gfortran)
 
 Python (>= 3.6 < 3.12)
+
 setuptools (< 60)
+
 Numpy (<1.23.0)
 
 Pywinter has been tested in linux distributions.
