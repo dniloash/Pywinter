@@ -353,7 +353,7 @@ Example
 	uwind = data.variables['U'][:,:,:]
 	vwind = data.variables['V'][:,:,:]
 
-	# Read 3D pressure levels (hPa)
+	# Read 3D pressure levels (Pa)
 	plevs = data.variables['PLEV'][:] 
 
 	# Create winter 3D isobaric fields
