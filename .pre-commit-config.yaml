@@ -1,0 +1,18 @@
+exclude: ^scripts/(.*LITTLER|python/resources)/.*
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: check-ast
+      - id: check-builtin-literals
+      - id: check-yaml
+      - id: check-toml
+      - id: debug-statements
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.7.3
+    hooks:
+      - id: ruff
+        types_or: [ python, pyi ]
+        args: [--fix]
+      - id: ruff-format
+        types_or: [ python, pyi ]
