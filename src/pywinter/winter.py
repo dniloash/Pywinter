@@ -2,7 +2,7 @@
 import numpy as np
 import os
 from struct import unpack
-import KreatE_inter_m_f as creattee_inter
+import pywinter.KreatE_inter_m_f as creattee_inter
 
 
 #COMPILE
