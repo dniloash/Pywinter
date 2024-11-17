@@ -1187,7 +1187,7 @@ def rinter(filen):
         try:
             recin = unpack(">i", intf.read(4))[0]
             in_version = unpack(">i", intf.read(recin))[0]
-            # recin_close = unpack(">i", intf.read(4))[0]
+            recin_close = unpack(">i", intf.read(4))[0]
 
             recin = unpack(">i", intf.read(4))[0]
             record2 = unpack(str(recin) + "s", intf.read(recin))[0]
@@ -1201,7 +1201,7 @@ def rinter(filen):
             in_nx = unpack(">i", record2[144:148])[0]
             in_ny = unpack(">i", record2[148:152])[0]
             in_iproj = unpack(">i", record2[152:156])[0]
-            # recin_close = unpack(">i", intf.read(4))[0]
+            recin_close = unpack(">i", intf.read(4))[0]
 
             recin = unpack(">i", intf.read(4))[0]
             record3 = unpack(str(recin) + "s", intf.read(recin))[0]
@@ -1286,12 +1286,12 @@ def rinter(filen):
                 lfin_truelat1.append(in_truelat1)
                 lfin_xlonc.append(in_xlonc)
 
-            # recin_close = unpack(">i", intf.read(4))[0]
+            recin_close = unpack(">i", intf.read(4))[0]
 
             recin = unpack(">i", intf.read(4))[0]
             record4 = unpack(str(recin) + "s", intf.read(recin))[0]
             in_is_wind = unpack(">i", record4[0:4])[0]
-            # recin_close = unpack(">l", intf.read(4))[0]
+            recin_close = unpack(">l", intf.read(4))[0]
 
             recin = unpack(">i", intf.read(4))[0]
             record5 = unpack(str(recin) + "s", intf.read(recin))[0]
