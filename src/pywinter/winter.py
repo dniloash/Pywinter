@@ -7,13 +7,13 @@ import pywinter.KreatE_inter_m_f as creattee_inter
 # COMPILE
 # f2py -c KreatE_inter_m_f.f90 -m KreatE_inter_m_f
 
-
 class Interm:
     def __init__(
         self,
         filen,
         hdat,
         rout,
+        nocolons,
         geos,
         varto,
         gene={},
@@ -26,6 +26,7 @@ class Interm:
     ):
         self.filen = filen
         self.rout = rout
+        self.nocolons = nocolons
         self.geos = geos
         self.varto = varto
         self.gene = gene
@@ -136,7 +137,11 @@ class Interm:
             tlat1 = self.geoinfo["TRUELAT1"]
             iswin = self.geoinfo["IS_WIND_EARTH_REL"]
 
-        ns = self.rout + self.filen + ":" + self.hdat
+
+        if self.nocolons:
+            ns = self.rout + self.filen + "_" + self.hdat
+        else:
+            ns = self.rout + self.filen + ":" + self.hdat
 
         fci = self.hdat
 
@@ -1025,8 +1030,9 @@ def chek_date(nome, dato):
         raise Error("datetime format must be YYYY-MM-DD_hh:mm:ss")
 
 
-def cinter(filen, date, geoinfo, varias, rout=""):
+def cinter(filen, date, geoinfo, varias, rout="",nocolons=False):
     chek_date(filen, date)
+
 
     if rout == "":
         pass
@@ -1132,7 +1138,7 @@ def cinter(filen, date, geoinfo, varias, rout=""):
 
                 variasf.append(vvv2d)
 
-    interfile = Interm(filen, date, rout, geoo, variasf)
+    interfile = Interm(filen, date, rout, nocolons, geoo, variasf)
 
     interfile.set_geoatr()
     interfile.set_varatr()
