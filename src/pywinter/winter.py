@@ -1030,13 +1030,13 @@ def chek_date(nome, dato):
         raise Error("datetime format must be YYYY-MM-DD_hh:mm:ss")
 
 
-def cinter(filen, date, geoinfo, varias, rout="",nocolons=False):
+def cinter(filen, date, geoinfo, varias, rout="", nocolons=False):
     chek_date(filen, date)
 
 
     if rout == "":
         pass
-    elif rout[-1] != "/":
+    if rout[-1] != "/":
         rout = rout + "/"
 
     for i in varias:
