@@ -1034,9 +1034,9 @@ def cinter(filen, date, geoinfo, varias, rout="", nocolons=False):
     chek_date(filen, date)
 
 
-    #if rout == "":
+    # if rout == "":
     #    pass
-    if rout != "" and rout[-1] != "/" :
+    if rout != "" and rout[-1] != "/":
         rout = rout + "/"
 
     for i in varias:
