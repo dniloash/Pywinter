@@ -34,7 +34,7 @@ pip install pywinter
 
 or
 
-pip3 install pywinter
+!pip install git+https://github.com/dniloash/Pywinter
 
 
 Read intermediate files (rinter)
