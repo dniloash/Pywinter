@@ -7,7 +7,7 @@ function crear_int0(NX,NY,STARTLAT,STARTLON,DELTALAT,DELTALON,int1,fci,int2,int3
     integer, parameter :: OUNIT = 11
 
     integer :: NVARS
-    character(len=200) :: NS
+    character(len=*) :: NS
 
 
     integer :: VERSION = 5
@@ -18,18 +18,18 @@ function crear_int0(NX,NY,STARTLAT,STARTLON,DELTALAT,DELTALON,int1,fci,int2,int3
     character(len=8) :: STARTLOC = 'SWCORNER'
 
     character(len=9) :: FIELD
-    character(len=10) :: int1
+    character(len=*) :: int1
     character(len=9), dimension(NVARS) :: fint
 
     character(len=24) :: fci
 
 
     character(len=25) :: UNITS
-    character(len=10) :: int2
+    character(len=*) :: int2
     character(len=25), dimension(NVARS) :: funt
 
     character(len=46) :: DESC
-    character(len=10) :: int3
+    character(len=*) :: int3
     character(len=46), dimension(NVARS) :: fdes
 
     character(len=32):: MAP_SOURCE = 'PYWINTER'
@@ -104,7 +104,7 @@ function crear_int1(NX,NY,STARTLAT,STARTLON,DX,DY,TRUELAT1,int1,fci,int2,int3,fl
     integer, parameter :: OUNIT = 11
 
     integer :: NVARS
-    character(len=200) :: NS
+    character(len=*) :: NS
 
 
     integer :: VERSION = 5
@@ -115,18 +115,18 @@ function crear_int1(NX,NY,STARTLAT,STARTLON,DX,DY,TRUELAT1,int1,fci,int2,int3,fl
     character(len=8) :: STARTLOC = 'SWCORNER'
 
     character(len=9) :: FIELD
-    character(len=10) :: int1
+    character(len=*) :: int1
     character(len=9), dimension(NVARS) :: fint
 
     character(len=24) :: fci
 
 
     character(len=25) :: UNITS
-    character(len=10) :: int2
+    character(len=*) :: int2
     character(len=25), dimension(NVARS) :: funt
 
     character(len=46) :: DESC
-    character(len=10) :: int3
+    character(len=*) :: int3
     character(len=46), dimension(NVARS) :: fdes
 
     character(len=32):: MAP_SOURCE = 'PYWINTER'
@@ -201,7 +201,7 @@ function crear_int3(NX,NY,STARTLAT,STARTLON,DX,DY,XLONC,TRUELAT1,TRUELAT2,iswin,
     integer, parameter :: OUNIT = 11
 
     integer :: NVARS
-    character(len=200) :: NS
+    character(len=*) :: NS
 
 
     integer :: VERSION = 5
@@ -212,18 +212,18 @@ function crear_int3(NX,NY,STARTLAT,STARTLON,DX,DY,XLONC,TRUELAT1,TRUELAT2,iswin,
     character(len=8) :: STARTLOC = 'SWCORNER'
 
     character(len=9) :: FIELD
-    character(len=10) :: int1
+    character(len=*) :: int1
     character(len=9), dimension(NVARS) :: fint
 
     character(len=24) :: fci
 
 
     character(len=25) :: UNITS
-    character(len=10) :: int2
+    character(len=*) :: int2
     character(len=25), dimension(NVARS) :: funt
 
     character(len=46) :: DESC
-    character(len=10) :: int3
+    character(len=*) :: int3
     character(len=46), dimension(NVARS) :: fdes
 
     character(len=32):: MAP_SOURCE = 'PYWINTER'
@@ -301,7 +301,7 @@ function crear_int4(NX,NY,STARTLAT,STARTLON,NLATS,DELTALON,iswin,int1,fci,int2,i
     integer, parameter :: OUNIT = 11
 
     integer :: NVARS
-    character(len=200) :: NS
+    character(len=*) :: NS
 
 
     integer :: VERSION = 5
@@ -312,18 +312,18 @@ function crear_int4(NX,NY,STARTLAT,STARTLON,NLATS,DELTALON,iswin,int1,fci,int2,i
     character(len=8) :: STARTLOC = 'SWCORNER'
 
     character(len=9) :: FIELD
-    character(len=10) :: int1
+    character(len=*) :: int1
     character(len=9), dimension(NVARS) :: fint
 
     character(len=24) :: fci
 
 
     character(len=25) :: UNITS
-    character(len=10) :: int2
+    character(len=*) :: int2
     character(len=25), dimension(NVARS) :: funt
 
     character(len=46) :: DESC
-    character(len=10) :: int3
+    character(len=*) :: int3
     character(len=46), dimension(NVARS) :: fdes
 
     character(len=32):: MAP_SOURCE = 'PYWINTER'
@@ -398,7 +398,7 @@ function crear_int5(NX,NY,STARTLAT,STARTLON,DX,DY,XLONC,TRUELAT1,iswin,int1,fci,
     integer, parameter :: OUNIT = 11
 
     integer :: NVARS
-    character(len=200) :: NS
+    character(len=*) :: NS
 
 
     integer :: VERSION = 5
@@ -409,18 +409,18 @@ function crear_int5(NX,NY,STARTLAT,STARTLON,DX,DY,XLONC,TRUELAT1,iswin,int1,fci,
     character(len=8) :: STARTLOC = 'SWCORNER'
 
     character(len=9) :: FIELD
-    character(len=10) :: int1
+    character(len=*) :: int1
     character(len=9), dimension(NVARS) :: fint
 
     character(len=24) :: fci
 
 
     character(len=25) :: UNITS
-    character(len=10) :: int2
+    character(len=*) :: int2
     character(len=25), dimension(NVARS) :: funt
 
     character(len=46) :: DESC
-    character(len=10) :: int3
+    character(len=*) :: int3
     character(len=46), dimension(NVARS) :: fdes
 
     character(len=32):: MAP_SOURCE = 'PYWINTER'
