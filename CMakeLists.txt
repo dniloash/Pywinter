@@ -7,12 +7,17 @@ project(pywinter
 find_package(Python REQUIRED COMPONENTS Interpreter Development.Module NumPy)
 
 # F2PY headers
+# 兼容 numpy 2.0：numpy.f2py.get_include() 在 numpy 2.0 中仍然可用
 execute_process(
   COMMAND "${Python_EXECUTABLE}" -c
       "import numpy.f2py; print(numpy.f2py.get_include())"
   OUTPUT_VARIABLE F2PY_INCLUDE_DIR
   OUTPUT_STRIP_TRAILING_WHITESPACE
+  RESULT_VARIABLE F2PY_INCLUDE_RESULT
 )
+if(F2PY_INCLUDE_RESULT)
+  message(FATAL_ERROR "无法获取 F2PY 头文件路径。请确保已安装 numpy>=1.20")
+endif()
 
 set(f2py_module_name "KreatE_inter_m_f")
 set(f_src_files 

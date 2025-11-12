@@ -10,7 +10,7 @@ classifiers = []
 readme = "README.md"
 requires-python  = ">= 3.9"
 dependencies = [
-    "numpy",
+    "numpy>=1.20",
 ]
 
 [project.urls]
@@ -23,11 +23,12 @@ test = [
 ]
 
 [build-system]
-requires = ["scikit-build-core", "numpy"]
+requires = ["scikit-build-core>=0.5.0", "numpy>=1.20", "setuptools", "wheel"]
 build-backend = "scikit_build_core.build"
 
 [tool.scikit-build]
-cmake.version = "CMakeLists.txt"
+# scikit-build-core 会自动查找 CMakeLists.txt 文件
+# 确保使用现代构建系统，不依赖 numpy.distutils
 
 [dependency-groups]
 dev = [
