@@ -7,6 +7,7 @@ import pywinter.KreatE_inter_m_f as creattee_inter
 # COMPILE
 # f2py -c KreatE_inter_m_f.f90 -m KreatE_inter_m_f
 
+
 class Interm:
     def __init__(
         self,
@@ -136,7 +137,6 @@ class Interm:
             xlonc = self.geoinfo["XLONC"]
             tlat1 = self.geoinfo["TRUELAT1"]
             iswin = self.geoinfo["IS_WIND_EARTH_REL"]
-
 
         if self.nocolons:
             ns = self.rout + self.filen + "_" + self.hdat
@@ -1032,7 +1032,6 @@ def chek_date(nome, dato):
 
 def cinter(filen, date, geoinfo, varias, rout="", nocolons=False):
     chek_date(filen, date)
-
 
     # if rout == "":
     #    pass
