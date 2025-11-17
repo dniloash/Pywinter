@@ -156,9 +156,9 @@ class Interm:
         va = self.megamat
 
         with (
-            NamedTemporaryFile("w", delete_on_close=False) as file1,
-            NamedTemporaryFile("w", delete_on_close=False) as file2,
-            NamedTemporaryFile("w", delete_on_close=False) as file3,
+            NamedTemporaryFile("w", delete=False) as file1,
+            NamedTemporaryFile("w", delete=False) as file2,
+            NamedTemporaryFile("w", delete=False) as file3,
         ):
             for h in range(len(fnt)):
                 if h == len(fnt) - 1:
