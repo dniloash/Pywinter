@@ -262,6 +262,10 @@ class Interm:
                     va,
                 )
 
+        os.remove(fnt)
+        os.remove(fun)
+        os.remove(fds)
+        
         print(fname + ":" + hdate)
 
 
