@@ -1,6 +1,7 @@
 import numpy as np
 import os
 from struct import unpack
+from tempfile import NamedTemporaryFile
 import pywinter.KreatE_inter_m_f as creattee_inter
 
 
@@ -154,91 +155,117 @@ class Interm:
 
         va = self.megamat
 
-        file1 = open(".inTer1", "w")
-        file2 = open(".inTer2", "w")
-        file3 = open(".inTer3", "w")
+        with (
+            NamedTemporaryFile("w", delete=False) as file1,
+            NamedTemporaryFile("w", delete=False) as file2,
+            NamedTemporaryFile("w", delete=False) as file3,
+        ):
+            for h in range(len(fnt)):
+                if h == len(fnt) - 1:
+                    file1.write(fnt[h])
+                    file2.write(fun[h])
+                    file3.write(fds[h])
+                else:
+                    file1.write(fnt[h] + os.linesep)
+                    file2.write(fun[h] + os.linesep)
+                    file3.write(fds[h] + os.linesep)
 
-        for h in range(len(fnt)):
-            if h == len(fnt) - 1:
-                file1.write(fnt[h])
-                file2.write(fun[h])
-                file3.write(fds[h])
-            else:
-                file1.write(fnt[h] + os.linesep)
-                file2.write(fun[h] + os.linesep)
-                file3.write(fds[h] + os.linesep)
+            file1.close()
+            file2.close()
+            file3.close()
 
-        file1.close()
-        file2.close()
-        file3.close()
+            fnt = file1.name
+            fun = file2.name
+            fds = file3.name
 
-        fnt = ".inTer1"
-        fun = ".inTer2"
-        fds = ".inTer3"
+            if isinstance(self.geos, Geo00):
+                creattee_inter.crear_int0(
+                    startlat,
+                    startlon,
+                    deltalat,
+                    deltalon,
+                    fnt,
+                    fci,
+                    fun,
+                    fds,
+                    flv,
+                    ns,
+                    va,
+                )
 
-        if isinstance(self.geos, Geo00):
-            creattee_inter.crear_int0(
-                startlat, startlon, deltalat, deltalon, fnt, fci, fun, fds, flv, ns, va
-            )
+            elif isinstance(self.geos, Geo01):
+                creattee_inter.crear_int1(
+                    startlat,
+                    startlon,
+                    dx,
+                    dy,
+                    tlat1,
+                    fnt,
+                    fci,
+                    fun,
+                    fds,
+                    flv,
+                    ns,
+                    va,
+                )
 
-        elif isinstance(self.geos, Geo01):
-            creattee_inter.crear_int1(
-                startlat, startlon, dx, dy, tlat1, fnt, fci, fun, fds, flv, ns, va
-            )
+            elif isinstance(self.geos, Geo03):
+                creattee_inter.crear_int3(
+                    startlat,
+                    startlon,
+                    dx,
+                    dy,
+                    xlonc,
+                    tlat1,
+                    tlat2,
+                    iswin,
+                    fnt,
+                    fci,
+                    fun,
+                    fds,
+                    flv,
+                    ns,
+                    va,
+                )
 
-        elif isinstance(self.geos, Geo03):
-            creattee_inter.crear_int3(
-                startlat,
-                startlon,
-                dx,
-                dy,
-                xlonc,
-                tlat1,
-                tlat2,
-                iswin,
-                fnt,
-                fci,
-                fun,
-                fds,
-                flv,
-                ns,
-                va,
-            )
+            elif isinstance(self.geos, Geo04):
+                creattee_inter.crear_int4(
+                    startlat,
+                    startlon,
+                    nlats,
+                    deltalon,
+                    iswin,
+                    fnt,
+                    fci,
+                    fun,
+                    fds,
+                    flv,
+                    ns,
+                    va,
+                )
 
-        elif isinstance(self.geos, Geo04):
-            creattee_inter.crear_int4(
-                startlat,
-                startlon,
-                nlats,
-                deltalon,
-                iswin,
-                fnt,
-                fci,
-                fun,
-                fds,
-                flv,
-                ns,
-                va,
-            )
+            elif isinstance(self.geos, Geo05):
+                creattee_inter.crear_int5(
+                    startlat,
+                    startlon,
+                    dx,
+                    dy,
+                    xlonc,
+                    tlat1,
+                    iswin,
+                    fnt,
+                    fci,
+                    fun,
+                    fds,
+                    flv,
+                    ns,
+                    va,
+                )
 
-        elif isinstance(self.geos, Geo05):
-            creattee_inter.crear_int5(
-                startlat,
-                startlon,
-                dx,
-                dy,
-                xlonc,
-                tlat1,
-                iswin,
-                fnt,
-                fci,
-                fun,
-                fds,
-                flv,
-                ns,
-                va,
-            )
-
+        os.remove(fnt)
+        os.remove(fun)
+        os.remove(fds)
+        
         print(fname + ":" + hdate)
 
 
