@@ -7,7 +7,7 @@ pywinter
 ====================================
 Python WPS Intermediate Files
 
-Pywinter is a Python3 library designed for handling files in MPAS/WRF-WPS intermediate file format. Usually you don't need to deal with the intermediate files by your own because that is the function of ungrib.exe, but sometimes you don't have meteorological data in GRIB format. Pywinter allows to read and create intermediate files by a simple way.
+Pywinter is a Python3 library designed for handling files in MPAS/WRF-WPS intermediate file format. Usually you don't need to deal with the intermediate files by your own because that is the function of ungrib.exe, but sometimes you don't have your meteorological data in GRIB format. Pywinter allows to read and create intermediate files by a simple way.
 
 
 
@@ -250,6 +250,16 @@ Example
 	winter_v10 = pyw.V2d('VV',u10m)
 
 
+It may also be useful to know that **PMLS** and **SST** have the default level 201300, but these variables allow you to specify the other level (200100). This can be important in some cases if you are using datasets from multiple sources:
+
+
+.. code-block:: python
+
+	winter_pmsl = pyw.V2d('PMSL',pmsl_var,lev='200100')
+	winter_sst = pyw.V2d('SST',sst_var,lev='200100')
+
+
+
 2D not avalaible name fields (create new 2d fields)
 -----------------------------------------------------
 
@@ -269,7 +279,9 @@ The 2D fields listed in the Table are the most important, however exists more 2D
 	winter_new = pyw.V2d('PMAXW',pmaxw,'Pressure at max wind level','Pa','200100')
 
 
-You must use 200100 for surface data and 201300 for sea level pressure data. Also it is very important to remember that all the fields you add must be in accordance with the information processed by metgrid.exe, you can get more information about this in the METGRID.TBL file or in the VTABLE files.
+You must use 200100 for surface data and 201300 for sea level pressure data. Also it is very important to remember that all the fields you add must be in accordance with the information processed by metgrid.exe, you can get more information about this in the METGRID.TBL file or in the VTABLE files. 
+
+
 
 3D non-isobaric Field (V3d)
 ====================================
@@ -503,8 +515,8 @@ Final notes
 
 Actually pywinter can't check if you write the file with all the necessary fields to run WRF, neither cannot check if your information is consistent, therefore is important you make sure the data is well before you create the files, and also double check the met_em files after metgrid.exe. You can get more information of how to create good files in the WRF User guide and WRF web tutorial, also you can check the intermediate files with WPS util programs:
 
-- .../WRF/WPS/util/rd\_intermediate.exe: It reads fields into intermediate files and show them
-- .../WRF/WPS/util/int2nc.exe: it converts intermediate files to netCDF format.
+- .../WRF/WPS/util/**rd\_intermediate.exe**: It reads fields into intermediate files and show them
+- .../WRF/WPS/util/**int2nc.exe**: it converts intermediate files to netCDF format.
 
 
 Documentation file

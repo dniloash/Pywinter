@@ -431,7 +431,7 @@ class V2d(Vuser):
             if len(self.lev) == 0:
                 lev = "201300"
             else:
-                lev = self.lev
+                lev = "200100"
 
         elif self.name == "SKINTEMP":
             nom = "Skin temperature"
@@ -479,7 +479,7 @@ class V2d(Vuser):
             if len(self.lev) == 0:
                 lev = "201300"
             else:
-                lev = self.lev
+                lev = "200100"
 
         elif self.name == "SEAICE":
             nom = "Sea-ice-fraction"

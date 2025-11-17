@@ -5,6 +5,6 @@ authors:
   given-names: "Danilo A"
   orcid: "https://orcid.org/0000-0000-0000-0000"
 title: "Pywinter"
-version: 2.0.6
+version: 2.0.7
 date-released: 2021-12-19
 url: "https://github.com/dniloash/Pywinter"

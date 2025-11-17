@@ -1,6 +1,6 @@
 [project]
 name = "pywinter"
-version = "2.0.6"
+version = "2.0.7"
 description = "Read and Create MPAS/WRF-WPS intermediate files"
 authors = [
   { name = "Danilo A Suarez H", email = "dniloash@gmail.com" },
