@@ -460,12 +460,12 @@ class V2d(Vuser):
 
         elif self.name == "UU":
             nom = "10-meter wind u-component"
-            uni = "kg kg-1"
+            uni = "m s-1"
             lev = "200100"
 
         elif self.name == "VV":
             nom = "10-meter wind v-component"
-            uni = "kg kg-1"
+            uni = "m s-1"
             lev = "200100"
 
         elif self.name == "LANDSEA":
