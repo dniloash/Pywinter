@@ -5,7 +5,7 @@ Pywinter is a Python3 library designed for handling files in MPAS/WRF-WPS interm
 
 Please check pywinter documentation in /docs and /examples.
 
-pywinter.readthedocs.io/en/latest/
+[pywinter.readthedocs.io/en/latest/](https://pywinter.readthedocs.io/en/latest/)
 
 # Dependencies
 pywinter requires:
